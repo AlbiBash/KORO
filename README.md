@@ -23,4 +23,4 @@ Then open http://localhost:8000.
 
 ## Before going live
 
-No Ffern photography remains. Bottle photos (`koro-*.jpg`) are AI-generated KORO concepts, and the material photos (`mat-*.jpg`) were supplied without a source: confirm the licence for each, or replace them with KORO's own shoot, before publishing. SEPHET still has a placeholder kraft tube tile.
+No Ffern photography remains. Bottle photos (`koro-*.jpg`, `tease-*.jpg`) are AI-generated KORO concepts, and the material photos (`mat-*.jpg`) were supplied without a source: confirm the licence for each, or replace them with KORO's own shoot, before publishing. SEPHET still has a placeholder kraft tube tile.

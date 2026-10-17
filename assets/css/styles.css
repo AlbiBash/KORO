@@ -151,18 +151,16 @@ p { margin: 0 0 1em; }
 
 /* ---------- Hero ---------- */
 
-.hero { border-bottom: 1px solid var(--line); }
-.hero-copy {
-  display: grid; grid-template-columns: 7fr 5fr; gap: 8px clamp(32px, 6vw, 96px); align-items: end;
-  max-width: var(--max); margin: 0 auto;
-  padding: clamp(48px, 7vw, 104px) var(--gutter) clamp(40px, 5vw, 72px);
+.hero {
+  display: grid; grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid var(--line);
 }
-.hero-copy > .eyebrow, .hero-copy > .display { grid-column: 1; }
-.hero-copy > .display { margin-bottom: 0; }
-.hero-copy > .lede, .hero-copy > .label, .hero-copy > .actions { grid-column: 2; }
-.hero-copy > .lede { grid-row: 1 / span 2; align-self: end; margin: 0; }
-.hero-copy > .label { margin-top: 12px; }
-.hero-copy > .actions { margin-top: 8px; }
+.hero-media { overflow: hidden; background: #b48f88; max-height: calc(100svh - 110px); min-height: 560px; }
+.hero-media img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 72%; }
+.hero-copy {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: clamp(48px, 7vw, 112px) clamp(24px, 6vw, 104px);
+}
 
 /* ---------- Label (the Ffern-style printed sticker) ---------- */
 
@@ -225,6 +223,22 @@ p { margin: 0 0 1em; }
 }
 .section-head--row .display { margin-bottom: 0; }
 .section-head--row p:last-child { margin: 0; justify-self: end; max-width: 30em; }
+
+/* ---------- Teasers ---------- */
+
+.teasers { display: grid; grid-template-columns: 1fr 1fr; }
+.teaser { position: relative; display: block; overflow: hidden; color: var(--paper); text-decoration: none; }
+.teaser img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; transition: transform 1.4s var(--ease); }
+.teaser:hover img { transform: scale(1.03); }
+.teaser-text {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  display: flex; flex-direction: column; gap: 4px;
+  padding: 64px clamp(20px, 3vw, 40px) clamp(20px, 3vw, 36px);
+  background: linear-gradient(transparent, rgba(20, 14, 10, .62));
+}
+.teaser-text .cap { color: rgba(241, 236, 226, .75); margin: 0; }
+.teaser-name { font-family: var(--didot); font-variation-settings: var(--didot-opsz); font-size: clamp(28px, 3vw, 44px); letter-spacing: .06em; line-height: 1; }
+.teaser-note { font-size: 14px; color: rgba(241, 236, 226, .85); }
 
 /* ---------- Edition ---------- */
 
@@ -545,9 +559,8 @@ p { margin: 0 0 1em; }
   .hero { min-height: 0; }
 
   .art-grid, .studio, .personal { grid-template-columns: 1fr; }
-  .hero-copy { grid-template-columns: 1fr; }
-  .hero-copy > * { grid-column: 1 !important; grid-row: auto !important; }
-  .hero-copy > .lede { margin-top: 16px; }
+  .hero-media { max-height: none; min-height: 0; }
+  .hero-media img { aspect-ratio: 4 / 5; height: auto; }
   .art-copy { max-width: none; }
   .studio-media { order: -1; }
   .section-head--row { grid-template-columns: 1fr; }
@@ -556,6 +569,7 @@ p { margin: 0 0 1em; }
 
   .words ul { grid-template-columns: 1fr; gap: 40px; max-width: 560px; }
   .materials-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .teasers { grid-template-columns: 1fr; }
   .footer-cols { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
