@@ -1,0 +1,298 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400..500&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: #888; }
+  .scene { display: block; }
+  .didot { font-family: "Bodoni Moda", serif; font-variation-settings: "opsz" 28; }
+  .sans { font-family: "Jost", sans-serif; }
+</style>
+</head>
+<body>
+<div id="out"></div>
+<script>
+// ---------- shared defs ----------
+const DEFS = `
+<defs>
+  <linearGradient id="gold" x1="0" x2="1" y1="0" y2="0">
+    <stop offset="0" stop-color="#7d5e27"/><stop offset=".16" stop-color="#cfae66"/>
+    <stop offset=".3" stop-color="#f7e9bd"/><stop offset=".44" stop-color="#c9a056"/>
+    <stop offset=".68" stop-color="#94702f"/><stop offset=".84" stop-color="#e0c47f"/>
+    <stop offset="1" stop-color="#76571f"/>
+  </linearGradient>
+  <linearGradient id="goldTop" x1="0" x2="1">
+    <stop offset="0" stop-color="#b8924a"/><stop offset=".4" stop-color="#f4e3b0"/><stop offset="1" stop-color="#a47b35"/>
+  </linearGradient>
+  <linearGradient id="glassFront" x1="0" x2="1">
+    <stop offset="0" stop-color="#9c8f6c" stop-opacity=".45"/>
+    <stop offset=".07" stop-color="#fffaf0" stop-opacity=".28"/>
+    <stop offset=".5" stop-color="#fffaf0" stop-opacity=".08"/>
+    <stop offset=".93" stop-color="#fffaf0" stop-opacity=".22"/>
+    <stop offset="1" stop-color="#8a7c58" stop-opacity=".5"/>
+  </linearGradient>
+  <linearGradient id="liquid" x1="0" x2="0" y1="0" y2="1">
+    <stop offset="0" stop-color="#e9d08c"/><stop offset=".55" stop-color="#d4a94f"/><stop offset="1" stop-color="#b98232"/>
+  </linearGradient>
+  <linearGradient id="liquidEdge" x1="0" x2="1">
+    <stop offset="0" stop-color="#7a4f14" stop-opacity=".45"/><stop offset=".12" stop-color="#7a4f14" stop-opacity="0"/>
+    <stop offset=".88" stop-color="#7a4f14" stop-opacity="0"/><stop offset="1" stop-color="#7a4f14" stop-opacity=".5"/>
+  </linearGradient>
+  <linearGradient id="glassBase" x1="0" x2="0" y1="0" y2="1">
+    <stop offset="0" stop-color="#e9c977" stop-opacity=".75"/><stop offset=".35" stop-color="#fff6df" stop-opacity=".55"/>
+    <stop offset="1" stop-color="#cdb27a" stop-opacity=".55"/>
+  </linearGradient>
+  <linearGradient id="wall" x1="0" x2="0" y1="0" y2="1">
+    <stop offset="0" stop-color="#e2d6bf"/><stop offset="1" stop-color="#d6c7aa"/>
+  </linearGradient>
+  <radialGradient id="wallLight" cx=".3" cy=".25" r=".8">
+    <stop offset="0" stop-color="#fff8ea" stop-opacity=".55"/><stop offset="1" stop-color="#fff8ea" stop-opacity="0"/>
+  </radialGradient>
+  <linearGradient id="floor" x1="0" x2="0" y1="0" y2="1">
+    <stop offset="0" stop-color="#cdb999"/><stop offset="1" stop-color="#c2ab86"/>
+  </linearGradient>
+  <linearGradient id="kraftFront" x1="0" x2="1">
+    <stop offset="0" stop-color="#c39d70"/><stop offset=".55" stop-color="#b48d62"/><stop offset="1" stop-color="#9f7a51"/>
+  </linearGradient>
+  <linearGradient id="kraftTop" x1="0" x2="1">
+    <stop offset="0" stop-color="#d4b285"/><stop offset="1" stop-color="#c3a175"/>
+  </linearGradient>
+  <linearGradient id="kraftInside" x1="0" x2="0" y1="0" y2="1">
+    <stop offset="0" stop-color="#6e5034"/><stop offset="1" stop-color="#8f6d48"/>
+  </linearGradient>
+  <filter id="paper" x="0" y="0" width="1" height="1">
+    <feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="3" result="n"/>
+    <feColorMatrix in="n" type="matrix" values="0 0 0 0 .35  0 0 0 0 .28  0 0 0 0 .18  0 0 0 .22 0" result="g"/>
+    <feComposite in="g" in2="SourceAlpha" operator="in" result="gn"/>
+    <feMerge><feMergeNode in="SourceGraphic"/><feMergeNode in="gn"/></feMerge>
+  </filter>
+  <filter id="kraft" x="0" y="0" width="1" height="1">
+    <feTurbulence type="fractalNoise" baseFrequency=".02 .9" numOctaves="2" seed="7" result="f"/>
+    <feColorMatrix in="f" type="matrix" values="0 0 0 0 .3  0 0 0 0 .2  0 0 0 0 .1  0 0 0 .35 -.05" result="fg"/>
+    <feTurbulence type="fractalNoise" baseFrequency="1.2" numOctaves="2" seed="11" result="n"/>
+    <feColorMatrix in="n" type="matrix" values="0 0 0 0 .25  0 0 0 0 .18  0 0 0 0 .1  0 0 0 .25 0" result="ng"/>
+    <feMerge result="m"><feMergeNode in="fg"/><feMergeNode in="ng"/></feMerge>
+    <feComposite in="m" in2="SourceAlpha" operator="in" result="mm"/>
+    <feMerge><feMergeNode in="SourceGraphic"/><feMergeNode in="mm"/></feMerge>
+  </filter>
+  <filter id="soft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="7"/></filter>
+  <filter id="soft2" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2.2"/></filter>
+  <filter id="soft4" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="14"/></filter>
+  <filter id="hl" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1.6"/></filter>
+</defs>`;
+
+// ---------- label (beige, embossed KORO, Nadya line art) ----------
+// drawn in a 280 x 180 box, scaled by caller
+function label(scent = "MABON", vol = "50 ml") {
+  const W = 280, H = 180, ink = "#5a3d2b", rule = "#b7a07a";
+  const emb = (txt, x, y, size, ls) => `
+    <text x="${x + .9}" y="${y + 1.1}" text-anchor="middle" class="didot" font-size="${size}" letter-spacing="${ls}" fill="#7d6644" fill-opacity=".55">${txt}</text>
+    <text x="${x - .8}" y="${y - .8}" text-anchor="middle" class="didot" font-size="${size}" letter-spacing="${ls}" fill="#fffaf0" fill-opacity=".95">${txt}</text>
+    <text x="${x}" y="${y}" text-anchor="middle" class="didot" font-size="${size}" letter-spacing="${ls}" fill="#e2d4b8">${txt}</text>`;
+  return `
+  <g>
+    <rect x="1.2" y="1.6" width="${W}" height="${H}" fill="#6b5536" opacity=".18" filter="url(#hl)"/>
+    <rect width="${W}" height="${H}" fill="#e9ddc6" filter="url(#paper)"/>
+    <rect x="7" y="7" width="${W - 14}" height="${H - 14}" fill="none" stroke="${rule}" stroke-width=".7"/>
+    ${emb("KORO", W / 2 + 3, 50, 36, 8)}
+    <line x1="7" y1="66" x2="${W - 7}" y2="66" stroke="${rule}" stroke-width=".7"/>
+    <line x1="150" y1="66" x2="150" y2="${H - 7}" stroke="${rule}" stroke-width=".7"/>
+    <text x="18" y="84" class="sans" font-size="5.8" letter-spacing="1.3" fill="#8b7656">SCENT</text>
+    <text x="18" y="104" class="didot" font-size="17" letter-spacing="2" fill="${ink}">${scent}</text>
+    <text x="18" y="119" class="sans" font-size="6.6" letter-spacing="1" fill="${ink}">NATURAL EAU DE PARFUM</text>
+    <line x1="7" y1="131" x2="150" y2="131" stroke="${rule}" stroke-width=".7"/>
+    <text x="18" y="146" class="sans" font-size="5.8" letter-spacing="1.3" fill="#8b7656">SEASON</text>
+    <text x="18" y="161" class="sans" font-size="8.5" fill="${ink}">Autumn 26</text>
+    <text x="92" y="146" class="sans" font-size="5.8" letter-spacing="1.3" fill="#8b7656">VOLUME</text>
+    <text x="92" y="161" class="sans" font-size="8.5" fill="${ink}">${vol}</text>
+    <image href="line-art.png" x="158" y="74" width="106" height="88" preserveAspectRatio="xMidYMid meet" opacity=".85"/>
+    <text x="${W - 14}" y="${H - 11}" text-anchor="end" class="sans" font-size="4.4" letter-spacing=".8" fill="#8b7656">ART · NADYA DANYLENKO</text>
+  </g>`;
+}
+
+// ---------- the square bottle (Koro's existing shape, no lid) ----------
+// local origin: bottom-left of the glass front face. W 360, H 380.
+function bottle(x, y, s, scent = "MABON") {
+  const W = 360, H = 380, T = 26, I = 24, base = 58, wall = 18;
+  const cx = W / 2, topY = -H - T / 2;
+  return `
+  <g transform="translate(${x} ${y}) scale(${s})">
+    <!-- glass body -->
+    <path d="M0 ${-H + 6} Q0 ${-H} 6 ${-H} H${W - 6} Q${W} ${-H} ${W} ${-H + 6} V-16 Q${W} 0 ${W - 16} 0 H16 Q0 0 0 -16 Z" fill="url(#glassFront)"/>
+    <!-- liquid -->
+    <rect x="${wall}" y="${-H + 22}" width="${W - 2 * wall}" height="${H - 22 - base}" fill="url(#liquid)" opacity=".93"/>
+    <rect x="${wall}" y="${-H + 22}" width="${W - 2 * wall}" height="${H - 22 - base}" fill="url(#liquidEdge)"/>
+    <rect x="${wall}" y="${-H + 22}" width="${W - 2 * wall}" height="5" fill="#f6e4ad" opacity=".85"/>
+    <!-- thick glass base -->
+    <path d="M2 ${-base} H${W - 2} V-16 Q${W - 2} -2 ${W - 16} -2 H16 Q2 -2 2 -16 Z" fill="url(#glassBase)"/>
+    <path d="M${wall} ${-base} H${W - wall}" stroke="#fff6dc" stroke-width="2" opacity=".8"/>
+    <path d="M10 -14 Q${cx} -4 ${W - 10} -14" stroke="#fff" stroke-width="1.4" fill="none" opacity=".5"/>
+    <!-- side walls -->
+    <rect x="0" y="${-H + 6}" width="${wall}" height="${H - 22}" fill="#fff" opacity=".14"/>
+    <rect x="${W - wall}" y="${-H + 6}" width="${wall}" height="${H - 22}" fill="#fff" opacity=".1"/>
+    <line x1="${wall}" y1="${-H + 20}" x2="${wall}" y2="${-base}" stroke="#7a5a2a" stroke-width="1" opacity=".35"/>
+    <line x1="${W - wall}" y1="${-H + 20}" x2="${W - wall}" y2="${-base}" stroke="#7a5a2a" stroke-width="1" opacity=".35"/>
+    <!-- top face (glass shoulder) -->
+    <path d="M0 ${-H} L${I} ${-H - T} H${W - I} L${W} ${-H} Z" fill="#f4eee0" opacity=".55"/>
+    <path d="M${wall} ${-H} L${I + 10} ${-H - T + 6} H${W - I - 10} L${W - wall} ${-H}" fill="#e7cf8c" opacity=".45"/>
+    <path d="M0 ${-H} L${I} ${-H - T} H${W - I} L${W} ${-H}" fill="none" stroke="#fffaf0" stroke-width="1.6" opacity=".9"/>
+    <!-- highlights -->
+    <rect x="26" y="${-H + 16}" width="10" height="${H - 90}" fill="#fff" opacity=".42" filter="url(#hl)"/>
+    <rect x="42" y="${-H + 30}" width="2.5" height="${H - 120}" fill="#fff" opacity=".6"/>
+    <rect x="${W - 30}" y="${-H + 30}" width="4" height="${H - 110}" fill="#fff" opacity=".28" filter="url(#hl)"/>
+    <!-- label (on the outer face, above the glass reflections) -->
+    <g transform="translate(40 ${-H + 92})">${label(scent)}</g>
+    <!-- outline -->
+    <path d="M0 ${-H + 6} Q0 ${-H} 6 ${-H} H${W - 6} Q${W} ${-H} ${W} ${-H + 6} V-16 Q${W} 0 ${W - 16} 0 H16 Q0 0 0 -16 Z" fill="none" stroke="#6b5530" stroke-opacity=".38" stroke-width="1.3"/>
+    <!-- neck + gold crimp collar + sprayer (no overcap) -->
+    <ellipse cx="${cx}" cy="${topY}" rx="58" ry="7" fill="#d9c79c" opacity=".6"/>
+    <rect x="${cx - 50}" y="${topY - 18}" width="100" height="18" fill="url(#gold)"/>
+    <ellipse cx="${cx}" cy="${topY}" rx="50" ry="5" fill="url(#gold)"/>
+    <rect x="${cx - 42}" y="${topY - 52}" width="84" height="36" fill="url(#gold)"/>
+    <ellipse cx="${cx}" cy="${topY - 18}" rx="50" ry="5" fill="url(#goldTop)"/>
+    <rect x="${cx - 50}" y="${topY - 21}" width="100" height="3" fill="url(#gold)"/>
+    <rect x="${cx - 34}" y="${topY - 100}" width="68" height="50" fill="url(#gold)"/>
+    <ellipse cx="${cx}" cy="${topY - 52}" rx="42" ry="4.5" fill="url(#goldTop)"/>
+    <ellipse cx="${cx}" cy="${topY - 100}" rx="34" ry="5" fill="url(#goldTop)"/>
+    <circle cx="${cx}" cy="${topY - 78}" r="3.6" fill="#5b4318"/>
+    <circle cx="${cx - .8}" cy="${topY - 78.8}" r="1.2" fill="#2e210b"/>
+  </g>`;
+}
+
+// object shadow helpers: floor shadow toward back-right + wall shadow
+function floorShadow(x0, x1, y, len, depth = 1) {
+  return `<path d="M${x0} ${y} L${x1} ${y} L${x1 + len} ${y - len * .32} L${x0 + len * .9} ${y - len * .32} Z" fill="#5a4022" opacity="${.3 * depth}" filter="url(#soft)"/>
+          <ellipse cx="${(x0 + x1) / 2}" cy="${y + 2}" rx="${(x1 - x0) * .56}" ry="7" fill="#3d2a14" opacity=".35" filter="url(#soft2)"/>`;
+}
+
+// ---------- rigid kraft box, front-on (lift-off full-telescope lid) ----------
+function closedBox(x, y, w, h, scent = "MABON") {
+  const t = w * .072, i = w * .067, baseBand = 14;
+  const ls = (w - 60) / 280;
+  return `
+  <g transform="translate(${x} ${y})">
+    <!-- base band peeking under the lid -->
+    <rect x="3" y="${-baseBand}" width="${w - 6}" height="${baseBand}" fill="#a98458" filter="url(#kraft)"/>
+    <line x1="3" y1="${-baseBand}" x2="${w - 3}" y2="${-baseBand}" stroke="#5e4428" stroke-opacity=".5"/>
+    <!-- lid front -->
+    <rect x="0" y="${-h}" width="${w}" height="${h - baseBand}" fill="url(#kraftFront)" filter="url(#kraft)"/>
+    <!-- lid top -->
+    <path d="M0 ${-h} L${i} ${-h - t} H${w - i} L${w} ${-h} Z" fill="url(#kraftTop)" filter="url(#kraft)"/>
+    <path d="M0 ${-h} H${w}" stroke="#f0dcbc" stroke-width="1.2" opacity=".8"/>
+    <!-- edges -->
+    <rect x="0" y="${-h}" width="${w}" height="${h - baseBand}" fill="none" stroke="#5e4428" stroke-opacity=".35"/>
+    <rect x="0" y="${-h}" width="5" height="${h - baseBand}" fill="#fff" opacity=".12"/>
+    <rect x="${w - 6}" y="${-h}" width="6" height="${h - baseBand}" fill="#3d2a14" opacity=".12"/>
+    <!-- label -->
+    <g transform="translate(30 ${-h + h * .3}) scale(${ls})">${label(scent)}</g>
+    <!-- printed note -->
+    <text x="${w / 2}" y="${-baseBand - 22}" text-anchor="middle" class="sans" font-size="${7 * ls + 2}" letter-spacing="1.4" fill="#4a321c" opacity=".78">KEEP ME IN THE BOX · AWAY FROM LIGHT</text>
+  </g>`;
+}
+
+// lid shown alone (for the open scene), leaning
+function lid(x, y, w, h, rot, scent) {
+  const t = w * .072, i = w * .067, ls = (w - 60) / 280;
+  return `
+  <g transform="translate(${x} ${y}) rotate(${rot})">
+    <rect x="0" y="${-h}" width="${w}" height="${h}" fill="url(#kraftFront)" filter="url(#kraft)"/>
+    <path d="M0 ${-h} L${i} ${-h - t} H${w - i} L${w} ${-h} Z" fill="url(#kraftTop)" filter="url(#kraft)"/>
+    <rect x="0" y="${-h}" width="${w}" height="${h}" fill="none" stroke="#5e4428" stroke-opacity=".35"/>
+    <rect x="${w - 6}" y="${-h}" width="6" height="${h}" fill="#3d2a14" opacity=".12"/>
+    <g transform="translate(30 ${-h + h * .32}) scale(${ls})">${label(scent)}</g>
+  </g>`;
+}
+
+// open base tray: back part (drawn before the bottle) and front part (after)
+function trayBack(x, y, w, h) {
+  const t = w * .072, i = w * .067, wall = 5;
+  return `
+  <g transform="translate(${x} ${y})">
+    <path d="M0 ${-h} L${i} ${-h - t} H${w - i} L${w} ${-h} Z" fill="#c9a77a" filter="url(#kraft)"/>
+    <path d="M${wall} ${-h} L${i + wall * .8} ${-h - t + wall * .6} H${w - i - wall * .8} L${w - wall} ${-h} Z" fill="url(#kraftInside)"/>
+  </g>`;
+}
+function trayFront(x, y, w, h) {
+  return `
+  <g transform="translate(${x} ${y})">
+    <rect x="0" y="${-h}" width="${w}" height="${h}" fill="url(#kraftFront)" filter="url(#kraft)"/>
+    <path d="M0 ${-h} H${w}" stroke="#f0dcbc" stroke-width="1.4" opacity=".85"/>
+    <rect x="0" y="${-h}" width="${w}" height="${h}" fill="none" stroke="#5e4428" stroke-opacity=".35"/>
+    <rect x="${w - 6}" y="${-h}" width="6" height="${h}" fill="#3d2a14" opacity=".12"/>
+    <text x="${w / 2}" y="${-h / 2 + 4}" text-anchor="middle" class="didot" font-size="15" letter-spacing="5"
+      fill="#a17c52" stroke="#7d5c38" stroke-width=".3" opacity=".9">KORO</text>
+    <text x="${w / 2 + .7}" y="${-h / 2 + 4.8}" text-anchor="middle" class="didot" font-size="15" letter-spacing="5" fill="#5e4428" opacity=".25">KORO</text>
+  </g>`;
+}
+
+function room(W, H, horizon) {
+  return `
+    <rect width="${W}" height="${horizon}" fill="url(#wall)"/>
+    <rect width="${W}" height="${horizon}" fill="url(#wallLight)"/>
+    <rect y="${horizon}" width="${W}" height="${H - horizon}" fill="url(#floor)"/>
+    <rect y="${horizon - 2}" width="${W}" height="6" fill="#bda781" opacity=".5" filter="url(#soft2)"/>
+    <rect width="${W}" height="${H}" fill="#5a4022" opacity=".035" filter="url(#paper)"/>`;
+}
+
+// warm window light falling on the wall
+function sun(x, y, w, h) {
+  return `<g opacity=".55" filter="url(#soft)">
+    <path d="M${x} ${y} L${x + w} ${y + 30} L${x + w - 40} ${y + h} L${x - 30} ${y + h - 20} Z" fill="#fff4dc"/>
+    <path d="M${x + w * .48} ${y + 10} L${x + w * .52} ${y + 14} L${x + w * .46} ${y + h} L${x + w * .42} ${y + h - 4} Z" fill="#d9c9ab"/>
+  </g>`;
+}
+
+// ---------- scenes ----------
+function scene1() {
+  const W = 800, H = 800, hz = 540, s = 1, bx = 220, by = 660;
+  const silhouette = `M0 -380 H360 V0 H0 Z M130 -480 H230 V-393 H130 Z`;
+  return `<svg class="scene" id="s1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="1600" height="1600">${DEFS}
+    ${room(W, H, hz)}
+    ${sun(60, 70, 300, 330)}
+    ${floorShadow(bx + 6, bx + 354, by, 240)}
+    <ellipse cx="${bx + 330}" cy="${by - 30}" rx="90" ry="20" fill="#e2a74a" opacity=".38" filter="url(#soft)"/>
+    ${bottle(bx, by, s)}
+  </svg>`;
+}
+
+function scene2() {
+  const W = 1000, H = 750, hz = 520;
+  const s = .62, bw = 360 * s;           // bottle 223 wide
+  const boxW = 250, boxH = 340;          // fits the bottle + sprayer with clearance
+  const boxX = 220, by = 640, botX = 545;
+  return `<svg class="scene" id="s2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="2000" height="1500">${DEFS}
+    ${room(W, H, hz)}
+    ${sun(40, 60, 380, 380)}
+    ${floorShadow(boxX + 4, boxX + boxW - 4, by, 260)}
+    ${floorShadow(botX + 4, botX + bw - 4, by + 18, 170, .9)}
+    <ellipse cx="${botX + bw * .9}" cy="${by - 4}" rx="60" ry="13" fill="#e2a74a" opacity=".38" filter="url(#soft)"/>
+    ${closedBox(boxX, by, boxW, boxH)}
+    ${bottle(botX, by + 18, s)}
+  </svg>`;
+}
+
+function scene3() {
+  const W = 1000, H = 750, hz = 520;
+  const s = .62, bw = 360 * s;
+  const boxW = 250, boxH = 340, trayH = 66, by = 650, trayX = 470;
+  const lidX = 190, lidY = 610;
+  const bxIn = trayX + (boxW - bw) / 2, byIn = by - 6;
+  return `<svg class="scene" id="s3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="2000" height="1500">${DEFS}
+    ${room(W, H, hz)}
+    ${sun(30, 50, 380, 380)}
+    <g transform="translate(${lidX} ${lidY}) scale(.92) translate(${-lidX} ${-lidY})">
+      ${floorShadow(lidX + 6, lidX + boxW - 6, lidY, 250)}
+      ${lid(lidX, lidY, boxW, boxH, 0, "MABON")}
+    </g>
+    ${floorShadow(trayX + 4, trayX + boxW - 4, by, 220)}
+    ${trayBack(trayX, by, boxW, trayH)}
+    ${bottle(bxIn, byIn, s)}
+    ${trayFront(trayX, by, boxW, trayH)}
+  </svg>`;
+}
+
+document.getElementById("out").innerHTML = scene1() + scene2() + scene3();
+</script>
+</body>
+</html>

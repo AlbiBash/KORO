@@ -58,6 +58,7 @@ p { margin: 0 0 1em; }
 
 .display {
   font-variation-settings: var(--didot-opsz);
+  text-wrap: balance;
   font-family: var(--didot);
   font-weight: 400;
   font-size: clamp(44px, 6.4vw, 96px);
@@ -403,6 +404,23 @@ p { margin: 0 0 1em; }
 .sizes label:has(input:focus-visible) { outline: 1px solid var(--ink); outline-offset: 3px; }
 .feature .actions { margin-top: 24px; }
 
+/* ---------- Bottle & box ---------- */
+
+.pack { padding: var(--section) 0; background: var(--paper-2); }
+.pack-wide { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
+.pack-wide img, .pack-media img { width: 100%; }
+.pack-row {
+  display: grid; grid-template-columns: 7fr 5fr; gap: clamp(32px, 6vw, 96px); align-items: center;
+  max-width: var(--max); margin: clamp(40px, 6vw, 88px) auto 0; padding: 0 var(--gutter);
+}
+.pack-copy { max-width: 480px; }
+.pack-list { margin-top: 28px; border-top: 1px solid var(--line); }
+.pack-list li {
+  display: grid; grid-template-columns: 88px 1fr; align-items: baseline;
+  padding: 14px 0; border-bottom: 1px solid var(--line);
+}
+.pack-list .cap { margin: 0; }
+
 /* ---------- Collection ---------- */
 
 .collection { padding: var(--section) 0; border-top: 1px solid var(--line); }
@@ -561,7 +579,7 @@ p { margin: 0 0 1em; }
   .hero { min-height: 0; }
   .hero-media img { aspect-ratio: 4 / 5; height: auto; }
 
-  .art-grid, .feature, .studio, .personal { grid-template-columns: 1fr; }
+  .art-grid, .feature, .studio, .personal, .pack-row { grid-template-columns: 1fr; }
   .art-copy { max-width: none; }
   .studio-media { order: -1; }
   .section-head--row { grid-template-columns: 1fr; }
