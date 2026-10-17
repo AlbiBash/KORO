@@ -1,0 +1,122 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400..500&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#888}.scene{display:block}.didot{font-family:"Bodoni Moda",serif;font-variation-settings:"opsz" 28}.sans{font-family:"Jost",sans-serif}</style>
+</head><body><div id="out"></div>
+<script src="scene3d.js"></script>
+<script>
+const DEFS = `
+<defs>
+  <linearGradient id="gold" x1="0" x2="1" y1="0" y2="0">
+    <stop offset="0" stop-color="#7d5e27"/><stop offset=".16" stop-color="#cfae66"/>
+    <stop offset=".3" stop-color="#f7e9bd"/><stop offset=".44" stop-color="#c9a056"/>
+    <stop offset=".68" stop-color="#94702f"/><stop offset=".84" stop-color="#e0c47f"/>
+    <stop offset="1" stop-color="#76571f"/>
+  </linearGradient>
+  <linearGradient id="goldTop" x1="0" x2="1">
+    <stop offset="0" stop-color="#b8924a"/><stop offset=".4" stop-color="#f4e3b0"/><stop offset="1" stop-color="#a47b35"/>
+  </linearGradient>
+  <linearGradient id="glassFront" x1="0" x2="1">
+    <stop offset="0" stop-color="#9c8f6c" stop-opacity=".45"/>
+    <stop offset=".07" stop-color="#fffaf0" stop-opacity=".28"/>
+    <stop offset=".5" stop-color="#fffaf0" stop-opacity=".08"/>
+    <stop offset=".93" stop-color="#fffaf0" stop-opacity=".22"/>
+    <stop offset="1" stop-color="#8a7c58" stop-opacity=".5"/>
+  </linearGradient>
+  <linearGradient id="liquid" x1="0" x2="0" y1="0" y2="1">
+    <stop offset="0" stop-color="#e9d08c"/><stop offset=".55" stop-color="#d4a94f"/><stop offset="1" stop-color="#b98232"/>
+  </linearGradient>
+  <linearGradient id="liquidEdge" x1="0" x2="1">
+    <stop offset="0" stop-color="#7a4f14" stop-opacity=".45"/><stop offset=".12" stop-color="#7a4f14" stop-opacity="0"/>
+    <stop offset=".88" stop-color="#7a4f14" stop-opacity="0"/><stop offset="1" stop-color="#7a4f14" stop-opacity=".5"/>
+  </linearGradient>
+  <linearGradient id="glassBase" x1="0" x2="0" y1="0" y2="1">
+    <stop offset="0" stop-color="#e9c977" stop-opacity=".75"/><stop offset=".35" stop-color="#fff6df" stop-opacity=".55"/>
+    <stop offset="1" stop-color="#cdb27a" stop-opacity=".55"/>
+  </linearGradient>
+  <linearGradient id="wall" x1="0" x2="0" y1="0" y2="1">
+    <stop offset="0" stop-color="#e2d6bf"/><stop offset="1" stop-color="#d6c7aa"/>
+  </linearGradient>
+  <radialGradient id="wallLight" cx=".3" cy=".25" r=".8">
+    <stop offset="0" stop-color="#fff8ea" stop-opacity=".55"/><stop offset="1" stop-color="#fff8ea" stop-opacity="0"/>
+  </radialGradient>
+  <linearGradient id="floor" x1="0" x2="0" y1="0" y2="1">
+    <stop offset="0" stop-color="#cdb999"/><stop offset="1" stop-color="#c2ab86"/>
+  </linearGradient>
+  <linearGradient id="kraftFront" x1="0" x2="1">
+    <stop offset="0" stop-color="#c39d70"/><stop offset=".55" stop-color="#b48d62"/><stop offset="1" stop-color="#9f7a51"/>
+  </linearGradient>
+  <linearGradient id="kraftTop" x1="0" x2="1">
+    <stop offset="0" stop-color="#d4b285"/><stop offset="1" stop-color="#c3a175"/>
+  </linearGradient>
+  <linearGradient id="kraftInside" x1="0" x2="0" y1="0" y2="1">
+    <stop offset="0" stop-color="#6e5034"/><stop offset="1" stop-color="#8f6d48"/>
+  </linearGradient>
+  <filter id="paper" x="0" y="0" width="1" height="1">
+    <feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="3" result="n"/>
+    <feColorMatrix in="n" type="matrix" values="0 0 0 0 .35  0 0 0 0 .28  0 0 0 0 .18  0 0 0 .22 0" result="g"/>
+    <feComposite in="g" in2="SourceAlpha" operator="in" result="gn"/>
+    <feMerge><feMergeNode in="SourceGraphic"/><feMergeNode in="gn"/></feMerge>
+  </filter>
+  <filter id="kraft" x="0" y="0" width="1" height="1">
+    <feTurbulence type="fractalNoise" baseFrequency=".02 .9" numOctaves="2" seed="7" result="f"/>
+    <feColorMatrix in="f" type="matrix" values="0 0 0 0 .3  0 0 0 0 .2  0 0 0 0 .1  0 0 0 .35 -.05" result="fg"/>
+    <feTurbulence type="fractalNoise" baseFrequency="1.2" numOctaves="2" seed="11" result="n"/>
+    <feColorMatrix in="n" type="matrix" values="0 0 0 0 .25  0 0 0 0 .18  0 0 0 0 .1  0 0 0 .25 0" result="ng"/>
+    <feMerge result="m"><feMergeNode in="fg"/><feMergeNode in="ng"/></feMerge>
+    <feComposite in="m" in2="SourceAlpha" operator="in" result="mm"/>
+    <feMerge><feMergeNode in="SourceGraphic"/><feMergeNode in="mm"/></feMerge>
+  </filter>
+  <filter id="soft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="7"/></filter>
+  <filter id="soft2" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2.2"/></filter>
+  <filter id="soft4" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="14"/></filter>
+  <filter id="hl" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1.6"/></filter>
+  <radialGradient id="discGrad" cx=".4" cy=".35" r=".7">
+    <stop offset="0" stop-color="#f7cf3c"/><stop offset=".7" stop-color="#e3a91c"/><stop offset="1" stop-color="#b9800f"/>
+  </radialGradient>
+</defs>`;
+const K = window.KORO3D;
+const svg = (id, W, H, px, body) => `<svg class="scene" id="${id}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W * px}" height="${H * px}">${DEFS}${body}</svg>`;
+
+function scene1() {
+  const W = 800, H = 800;
+  const P = K.camera({ pos: [0, 160, 560], target: [0, 28, 8], f: 2300, cx: W / 2, cy: H * .52 });
+  const bc = [14, 0, -6], fl = [-22, 0, 40];
+  return svg("s1", W, H, 2, `
+    ${K.room(P, W, H, -260)}
+    ${K.castShadow(P, K.bottlePts(bc))}
+    ${K.contact(P, K.bottleFoot(bc))}
+    ${K.bottle(P, bc)}
+    ${K.camomile(P, fl, 18)}`);
+}
+function scene2() {
+  const W = 1000, H = 750;
+  const P = K.camera({ pos: [0, 175, 600], target: [0, 36, 0], f: 1900, cx: W / 2, cy: H * .5 });
+  const box = [-52, 0, -14], bc = [46, 0, 12], fl = [-6, 0, 56];
+  return svg("s2", W, H, 2, `
+    ${K.room(P, W, H, -280)}
+    ${K.castShadow(P, K.boxPts(box, -16))}
+    ${K.castShadow(P, K.bottlePts(bc))}
+    ${K.contact(P, K.boxCorners(box, K.BOX.w, K.BOX.d, -16))}
+    ${K.contact(P, K.bottleFoot(bc))}
+    ${K.closedBox(P, box, -16)}
+    ${K.bottle(P, bc)}
+    ${K.camomile(P, fl, 10)}`);
+}
+function scene3() {
+  const W = 1000, H = 750;
+  const P = K.camera({ pos: [0, 175, 600], target: [0, 34, 0], f: 1900, cx: W / 2, cy: H * .5 });
+  const lid = [-58, 0, -18], tc = [44, 0, 10], fl = [-10, 0, 58];
+  const art = (w, h) => K.prism ? null : null;
+  return svg("s3", W, H, 2, `
+    ${K.room(P, W, H, -280)}
+    ${K.castShadow(P, K.boxPts(lid, -16, 88))}
+    ${K.castShadow(P, K.bottlePts(tc))}
+    ${K.contact(P, K.boxCorners(lid, K.BOX.w, K.BOX.d, -16))}
+    ${K.contact(P, K.boxCorners(tc, K.TRAY.w, K.TRAY.d, 45))}
+    ${K.prism(P, lid, K.BOX.w, K.BOX.d, 0, 88, -16, { art: (w, h) => boxArtLid(w, h) })}
+    ${K.tray(P, tc, 45, K.bottle(P, tc))}
+    ${K.camomile(P, fl, 14)}`);
+}
+document.getElementById("out").innerHTML = scene1() + scene2() + scene3();
+</script></body></html>
