@@ -23,6 +23,7 @@
       <button class="nav-toggle" aria-expanded="false" aria-controls="menu">Menu</button>
       <ul id="menu" class="nav-list">
         <li><a href="#edition">Autumn 26</a></li>
+        <li><a href="#art">Art</a></li>
         <li><a href="#collection">Perfumes</a></li>
         <li><a href="#discovery">Discovery</a></li>
         <li><a href="#personal">Personal fragrance</a></li>
@@ -101,21 +102,93 @@
         </li>
       </ol>
 
-      <div class="box reveal">
-        <figure class="box-media">
-          <img src="assets/img/edition-box.jpg" alt="Flat lay of a seasonal edition: kraft tube, perfume bottle, illustrated card, printed scarf and folder" width="1125" height="1387" loading="lazy">
-        </figure>
-        <div class="box-copy">
-          <p class="eyebrow">In the box</p>
-          <h3 class="display display--sm">An edition to open slowly</h3>
-          <ul class="contents">
-            <li><span class="cap">01</span>MABON, natural eau de parfum, 10ml or 50ml</li>
-            <li><span class="cap">02</span>An art card by Nadya Danylenko, one of five</li>
-            <li><span class="cap">03</span>A kraft tube, numbered by hand</li>
-            <li><span class="cap">04</span>A note from the studio on how this season was made</li>
-          </ul>
-          <a class="btn" href="#mabon">Shop the edition</a>
-        </div>
+      <div class="edition-cta reveal">
+        <a class="btn" href="#art">Shop the card set</a>
+        <a class="link" href="#art-frame">Or frame a favourite</a>
+      </div>
+    </section>
+
+    <!-- Art: card set + framed print -->
+    <section class="art" id="art">
+      <div class="section-head reveal">
+        <p class="eyebrow">Nadya Danylenko for KORO</p>
+        <h2 class="display display--md">Art to live with</h2>
+        <p>The drawings that dress this season are available on their own: as a set of five cards to send or keep, or as a framed print for the wall.</p>
+      </div>
+
+      <div class="art-grid">
+
+        <article class="art-item art-item--frame reveal" id="art-frame">
+          <div class="stage stage--wall">
+            <div class="frame" data-finish="oak">
+              <div class="mat">
+                <img id="frame-art" src="assets/img/dancers.jpg" alt="Framed watercolour of two dancing figures by Nadya Danylenko" width="941" height="1060" loading="lazy">
+              </div>
+            </div>
+          </div>
+
+          <div class="art-copy">
+            <div class="art-title">
+              <h3 class="display display--sm">Framed artwork</h3>
+              <p class="art-price" data-frame-price>£120</p>
+            </div>
+            <p class="muted-text">A fine-art print of Nadya’s original, set behind a wide mat in a slim wooden frame.</p>
+
+            <fieldset class="opt">
+              <legend class="cap">Artwork <span data-art-name>Two, in motion</span></legend>
+              <div class="thumbs">
+                <label><input type="radio" name="art" value="dancers" data-src="assets/img/dancers.jpg" data-name="Two, in motion" data-alt="Framed watercolour of two dancing figures by Nadya Danylenko" checked><img src="assets/img/dancers.jpg" alt="" loading="lazy"><span class="sr">Two, in motion</span></label>
+                <label><input type="radio" name="art" value="savour" data-src="assets/img/art-savour.jpg" data-name="Savour" data-alt="Framed watercolour of a reclining figure with a slice of citrus by Nadya Danylenko"><img src="assets/img/art-savour.jpg" alt="" loading="lazy"><span class="sr">Savour</span></label>
+                <label><input type="radio" name="art" value="seated" data-src="assets/img/drawing-line.jpg" data-name="Seated" data-alt="Framed single-line ink drawing of a seated figure by Nadya Danylenko"><img src="assets/img/drawing-line.jpg" alt="" loading="lazy"><span class="sr">Seated</span></label>
+                <label><input type="radio" name="art" value="hands" data-src="assets/img/drawing-hands.jpg" data-name="Held" data-alt="Framed ink drawing of two hands holding a frame by Nadya Danylenko"><img src="assets/img/drawing-hands.jpg" alt="" loading="lazy"><span class="sr">Held</span></label>
+              </div>
+            </fieldset>
+
+            <fieldset class="opt">
+              <legend class="cap">Frame <span data-finish-name>Natural oak</span></legend>
+              <div class="swatches">
+                <label><input type="radio" name="finish" value="oak" data-name="Natural oak" checked><span class="swatch swatch--oak"></span><span class="sr">Natural oak</span></label>
+                <label><input type="radio" name="finish" value="walnut" data-name="Walnut"><span class="swatch swatch--walnut"></span><span class="sr">Walnut</span></label>
+                <label><input type="radio" name="finish" value="white" data-name="Chalk white"><span class="swatch swatch--white"></span><span class="sr">Chalk white</span></label>
+              </div>
+            </fieldset>
+
+            <fieldset class="opt sizes">
+              <legend class="cap">Size</legend>
+              <label><input type="radio" name="frame-size" value="A4" data-price="£120" checked> A4</label>
+              <label><input type="radio" name="frame-size" value="A3" data-price="£180"> A3</label>
+            </fieldset>
+
+            <a class="btn" data-frame-order href="mailto:info@koroperfumes.com">Order by email</a>
+          </div>
+        </article>
+
+        <article class="art-item art-item--cards reveal" id="card-set">
+          <div class="stage stage--table">
+            <div class="fan" aria-hidden="true">
+              <img src="assets/img/card-quote.jpg" alt="" loading="lazy">
+              <img src="assets/img/card-figure.jpg" alt="" loading="lazy">
+              <img src="assets/img/card-embrace.jpg" alt="" loading="lazy">
+              <img src="assets/img/card-savour.jpg" alt="" loading="lazy">
+              <img src="assets/img/card-dancers.jpg" alt="" loading="lazy">
+            </div>
+            <span class="band"><span class="cap">Set of</span>Five</span>
+          </div>
+
+          <div class="art-copy">
+            <div class="art-title">
+              <h3 class="display display--sm">The card set</h3>
+              <p class="art-price">£18</p>
+            </div>
+            <p class="muted-text">All five Autumn 26 drawings, printed on textured paper and tied with a kraft band. Each comes with an envelope.</p>
+            <dl class="notes notes--compact">
+              <div><dt class="cap">Includes</dt><dd>Two, in motion · Embrace · Savour · The perfumer’s coat · No way back</dd></div>
+              <div><dt class="cap">Format</dt><dd>A6 cards, kraft envelopes</dd></div>
+            </dl>
+            <a class="btn" href="mailto:info@koroperfumes.com?subject=Card%20set%20%E2%80%94%20Nadya%20Danylenko">Order by email</a>
+          </div>
+        </article>
+
       </div>
     </section>
 
@@ -324,6 +397,7 @@
           <li><a href="https://koroperfumes.com/about-us/">About us</a></li>
           <li><a href="#personal">Personal fragrance</a></li>
           <li><a href="#edition">KORO × Nadya Danylenko</a></li>
+          <li><a href="#art">Card set &amp; framed art</a></li>
         </ul>
       </div>
       <div>

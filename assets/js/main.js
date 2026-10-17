@@ -41,3 +41,33 @@ if ("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: re
 } else {
   reveals.forEach((el) => el.classList.add("is-in"));
 }
+
+// Framed artwork configurator
+const frame = document.querySelector(".frame");
+const frameArt = document.getElementById("frame-art");
+const frameOrder = document.querySelector("[data-frame-order]");
+if (frame && frameArt && frameOrder) {
+  const pick = (name) => document.querySelector(`input[name="${name}"]:checked`);
+  const update = () => {
+    const art = pick("art");
+    const finish = pick("finish");
+    const size = pick("frame-size");
+
+    if (frameArt.getAttribute("src") !== art.dataset.src) {
+      frameArt.src = art.dataset.src;
+      frameArt.alt = art.dataset.alt;
+    }
+    frame.classList.toggle("is-wide", art.value === "savour");
+    frame.dataset.finish = finish.value;
+
+    document.querySelector("[data-art-name]").textContent = art.dataset.name;
+    document.querySelector("[data-finish-name]").textContent = finish.dataset.name;
+    document.querySelector("[data-frame-price]").textContent = size.dataset.price;
+
+    const subject = `Framed artwork: ${art.dataset.name}, ${finish.dataset.name}, ${size.value}`;
+    frameOrder.href = `mailto:info@koroperfumes.com?subject=${encodeURIComponent(subject)}`;
+  };
+  document.querySelectorAll('input[name="art"], input[name="finish"], input[name="frame-size"]')
+    .forEach((input) => input.addEventListener("change", update));
+  update();
+}

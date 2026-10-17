@@ -6,7 +6,7 @@ The homepage leads with the **Autumn 26 edition, KORO × Nadya Danylenko**, a co
 
 ## Structure
 
-- `index.html` – single-page site: seasonal hero, perfumer statement, edition and art cards, MABON feature, collection, discovery sets, studio, personal fragrance, reviews
+- `index.html` – single-page site: seasonal hero, perfumer statement, edition and art cards, art shop (card set + framed print configurator), MABON feature, collection, discovery sets, studio, personal fragrance, reviews
 - `assets/css/styles.css` – design tokens and layout (GFS Didot for the logo and display type, Jost for text)
 - `assets/js/main.js` – mobile menu, volume selector, scroll fade-in (respects reduced motion)
 - `assets/img/` – photography and Nadya Danylenko artwork
@@ -23,4 +23,6 @@ Then open http://localhost:8000.
 
 ## Before going live
 
-The bottle, tube and flat-lay photographs are Ffern's (their bottles carry Ffern labels). They are here as mood references only and must be replaced with KORO's own shoot before publishing.
+The bottle and tube photographs are Ffern's (their bottles carry Ffern labels). They are here as mood references only and must be replaced with KORO's own shoot before publishing.
+
+Card set and framed print prices, formats and frame finishes are placeholders; orders currently go to info@koroperfumes.com by email.
