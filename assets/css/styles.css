@@ -11,7 +11,9 @@
   --clay: #96594b;
   --line: rgba(42, 36, 32, 0.16);
 
-  --didot: "GFS Didot", "Didot", "Bodoni 72", "Bodoni Moda", Georgia, serif;
+  /* Didot where the device has it (Apple), otherwise Bodoni Moda at a Didot-like optical size */
+  --didot: "Didot", "Didot LT STD", "Bodoni Moda", "Bodoni 72", Georgia, serif;
+  --didot-opsz: "opsz" 28;
   --sans: "Jost", "Futura", "Helvetica Neue", Arial, sans-serif;
 
   --gutter: clamp(16px, 4vw, 56px);
@@ -55,6 +57,7 @@ p { margin: 0 0 1em; }
 /* ---------- Type ---------- */
 
 .display {
+  font-variation-settings: var(--didot-opsz);
   font-family: var(--didot);
   font-weight: 400;
   font-size: clamp(44px, 6.4vw, 96px);
@@ -124,6 +127,7 @@ p { margin: 0 0 1em; }
 }
 
 .logo {
+  font-variation-settings: var(--didot-opsz);
   font-family: var(--didot);
   font-size: clamp(28px, 3vw, 40px);
   letter-spacing: 0.14em;
@@ -172,6 +176,7 @@ p { margin: 0 0 1em; }
   box-shadow: 0 1px 0 rgba(42, 36, 32, 0.04);
 }
 .label-brand {
+  font-variation-settings: var(--didot-opsz);
   grid-row: span 2;
   display: flex; align-items: center; justify-content: center;
   border-right: 1px solid var(--line);
@@ -196,6 +201,7 @@ p { margin: 0 0 1em; }
 }
 .statement blockquote { margin: 0 auto; max-width: 980px; }
 .statement p {
+  font-variation-settings: var(--didot-opsz);
   font-family: var(--didot);
   font-size: clamp(28px, 3.6vw, 52px);
   line-height: 1.18;
@@ -504,6 +510,7 @@ p { margin: 0 0 1em; }
 .footer-cols a:hover { text-decoration: underline; text-underline-offset: 4px; }
 
 .footer-logo {
+  font-variation-settings: var(--didot-opsz);
   font-family: var(--didot);
   font-size: clamp(96px, 24vw, 360px);
   line-height: 0.8; letter-spacing: 0.08em;
