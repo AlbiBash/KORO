@@ -92,7 +92,7 @@ function label(scent = "MABON", vol = "50 ml") {
     <text x="${x}" y="${y}" text-anchor="middle" class="didot" font-size="${size}" letter-spacing="${ls}" fill="#e2d4b8">${txt}</text>`;
   return `
   <g>
-    <rect x="1.2" y="1.6" width="${W}" height="${H}" fill="#6b5536" opacity=".18" filter="url(#hl)"/>
+    <rect x="1.6" y="2.2" width="${W}" height="${H}" fill="#4f3c22" opacity=".26" filter="url(#hl)"/>
     <rect width="${W}" height="${H}" fill="#e9ddc6" filter="url(#paper)"/>
     <rect x="7" y="7" width="${W - 14}" height="${H - 14}" fill="none" stroke="${rule}" stroke-width=".7"/>
     ${emb("KORO", W / 2 + 3, 50, 36, 8)}
@@ -142,7 +142,7 @@ function bottle(x, y, s, scent = "MABON") {
     <rect x="42" y="${-H + 30}" width="2.5" height="${H - 120}" fill="#fff" opacity=".6"/>
     <rect x="${W - 30}" y="${-H + 30}" width="4" height="${H - 110}" fill="#fff" opacity=".28" filter="url(#hl)"/>
     <!-- label (on the outer face, above the glass reflections) -->
-    <g transform="translate(40 ${-H + 92})">${label(scent)}</g>
+    <g transform="translate(${cx - 6} ${-H + 186}) rotate(-9) scale(.84) translate(-140 -90)">${label(scent)}</g>
     <!-- outline -->
     <path d="M0 ${-H + 6} Q0 ${-H} 6 ${-H} H${W - 6} Q${W} ${-H} ${W} ${-H + 6} V-16 Q${W} 0 ${W - 16} 0 H16 Q0 0 0 -16 Z" fill="none" stroke="#6b5530" stroke-opacity=".38" stroke-width="1.3"/>
     <!-- neck + gold crimp collar + sprayer (no overcap) -->
@@ -185,7 +185,7 @@ function closedBox(x, y, w, h, scent = "MABON") {
     <rect x="0" y="${-h}" width="5" height="${h - baseBand}" fill="#fff" opacity=".12"/>
     <rect x="${w - 6}" y="${-h}" width="6" height="${h - baseBand}" fill="#3d2a14" opacity=".12"/>
     <!-- label -->
-    <g transform="translate(30 ${-h + h * .3}) scale(${ls})">${label(scent)}</g>
+    <g transform="translate(${w / 2} ${-h + h * .44}) rotate(-9) scale(${ls * .86}) translate(-140 -90)">${label(scent)}</g>
     <!-- printed note -->
     <text x="${w / 2}" y="${-baseBand - 22}" text-anchor="middle" class="sans" font-size="${7 * ls + 2}" letter-spacing="1.4" fill="#4a321c" opacity=".78">KEEP ME IN THE BOX · AWAY FROM LIGHT</text>
   </g>`;
@@ -200,7 +200,7 @@ function lid(x, y, w, h, rot, scent) {
     <path d="M0 ${-h} L${i} ${-h - t} H${w - i} L${w} ${-h} Z" fill="url(#kraftTop)" filter="url(#kraft)"/>
     <rect x="0" y="${-h}" width="${w}" height="${h}" fill="none" stroke="#5e4428" stroke-opacity=".35"/>
     <rect x="${w - 6}" y="${-h}" width="6" height="${h}" fill="#3d2a14" opacity=".12"/>
-    <g transform="translate(30 ${-h + h * .32}) scale(${ls})">${label(scent)}</g>
+    <g transform="translate(${w / 2} ${-h + h * .46}) rotate(-9) scale(${ls * .86}) translate(-140 -90)">${label(scent)}</g>
   </g>`;
 }
 
