@@ -77,13 +77,15 @@ function contact(P, pts) {
 
 // ---------- sticker (content units: each half 160 x 118) ----------
 const INK = "#4a3020";
-function emb(txt, x, y, size, ls) {
-  return `
-    <text x="${x + .9}" y="${y + 1.1}" text-anchor="middle" class="didot" font-size="${size}" letter-spacing="${ls}" fill="#7d6644" fill-opacity=".55">${txt}</text>
-    <text x="${x - .8}" y="${y - .8}" text-anchor="middle" class="didot" font-size="${size}" letter-spacing="${ls}" fill="#fffaf0">${txt}</text>
-    <text x="${x}" y="${y}" text-anchor="middle" class="didot" font-size="${size}" letter-spacing="${ls}" fill="#e0d2b5">${txt}</text>`;
+function emb(txt, x, y, size, ls) {   // blind emboss, set vertically (reads bottom to top)
+  return `<g transform="translate(${x} ${y}) rotate(-90)">
+    <text x=".9" y="1.1" text-anchor="middle" class="didot" font-size="${size}" letter-spacing="${ls}" fill="#7d6644" fill-opacity=".55">${txt}</text>
+    <text x="-.8" y="-.8" text-anchor="middle" class="didot" font-size="${size}" letter-spacing="${ls}" fill="#fffaf0">${txt}</text>
+    <text x="0" y="0" text-anchor="middle" class="didot" font-size="${size}" letter-spacing="${ls}" fill="#e0d2b5">${txt}</text></g>`;
 }
-const SW = 160, SH = 118, ART = { w: 214, h: 201, x: SW - 26, y: -46 };
+// strip = two halves of 160 x 118 either side of the bottle's corner; the drawing detail
+// covers the whole strip so every line runs to the sticker's edges
+const SW = 160, SH = 118, ART = { w: 400, h: 376, x: 44, y: -150 };
 let uid = 0;
 function stickerHalf(side) {
   const id = `c${uid++}`, artX = side === "left" ? ART.x : ART.x - SW;
@@ -91,11 +93,12 @@ function stickerHalf(side) {
     <clipPath id="${id}"><rect width="${SW}" height="${SH}"/></clipPath>
     <rect width="${SW}" height="${SH}" fill="#e9ddc6" filter="url(#paper)"/>
     <g clip-path="url(#${id})"><image href="detail-art.png" x="${artX}" y="${ART.y}" width="${ART.w}" height="${ART.h}" opacity=".9"/></g>
-    ${side === "left" ? emb("KORO", 68, SH / 2 + 11, 30, 7) : ""}`;
+    ${side === "left" ? emb("KORO", 34, SH / 2 + 2, 28, 6) : ""}`;
 }
 
 // ---------- the bottle ----------
 const B = { side: 56, h: 60, base: 11, wall: 3.5, fill: 5 };
+const STK = { w: 32, h: 23.6, top: 44 };   // each sticker half, mm
 function bottle(P, c, rot = 45) {
   const k = boxCorners(c, B.side, B.side, rot);
   // after a 45° turn: k[0] is the front corner, k[3] left, k[1] right
@@ -105,8 +108,8 @@ function bottle(P, c, rot = 45) {
   const glass = (F, side) => {
     const shade = side === "right";
     const stk = side === "left"
-      ? { u0: W - 22, u1: W, tl: F.at(W - 22, 34), tr: F.at(W, 34), bl: F.at(W - 22, 17.8) }
-      : { u0: 0, u1: 22, tl: F.at(0, 34), tr: F.at(22, 34), bl: F.at(0, 17.8) };
+      ? { tl: F.at(W - STK.w, STK.top), tr: F.at(W, STK.top), bl: F.at(W - STK.w, STK.top - STK.h) }
+      : { tl: F.at(0, STK.top), tr: F.at(STK.w, STK.top), bl: F.at(0, STK.top - STK.h) };
     return `
       <path d="${quad(P, F, 0, W, 0, H)}" fill="url(#glassFront)"/>
       <path d="${quad(P, F, B.wall, W - B.wall, B.base, H - B.fill)}" fill="url(#liquid)" opacity=".93"/>
@@ -138,7 +141,7 @@ function bottle(P, c, rot = 45) {
     <path d="${poly(P, [T(left), T(front), T(right), T(back)])}" fill="#f4eee0" opacity=".55"/>
     <path d="${poly(P, [lerp(topC, T(left), .88), lerp(topC, T(front), .88), lerp(topC, T(right), .88), lerp(topC, T(back), .88)])}" fill="#e7cf8c" opacity=".45"/>
     <path d="M${P(T(left)).map(f2).join(" ")} L${P(T(back)).map(f2).join(" ")} L${P(T(right)).map(f2).join(" ")}" fill="none" stroke="#fffaf0" stroke-width="1.4" opacity=".8"/>
-    <path d="M${P(front).map(f2).join(" ")} L${P(up(front, 17.6)).map(f2).join(" ")} M${P(up(front, 34.4)).map(f2).join(" ")} L${P(T(front)).map(f2).join(" ")}" stroke="#fffaf0" stroke-width="2.2" opacity=".75"/>
+    <path d="M${P(front).map(f2).join(" ")} L${P(up(front, STK.top - STK.h - .3)).map(f2).join(" ")} M${P(up(front, STK.top + .3)).map(f2).join(" ")} L${P(T(front)).map(f2).join(" ")}" stroke="#fffaf0" stroke-width="2.2" opacity=".75"/>
     <path d="M${P(left).map(f2).join(" ")} L${P(front).map(f2).join(" ")} L${P(right).map(f2).join(" ")} L${P(T(right)).map(f2).join(" ")} L${P(T(back)).map(f2).join(" ")} L${P(T(left)).map(f2).join(" ")} Z" fill="none" stroke="#6b5530" stroke-opacity=".4" stroke-width="1.2"/>
     <path d="M${P(T(left)).map(f2).join(" ")} L${P(T(front)).map(f2).join(" ")} L${P(T(right)).map(f2).join(" ")}" fill="none" stroke="#6b5530" stroke-opacity=".3"/>
     <ellipse cx="${f2(tc[0])}" cy="${f2(tc[1])}" rx="${f2(11 * s)}" ry="${f2(11 * s * e)}" fill="#d9c79c" opacity=".6"/>
@@ -154,14 +157,12 @@ const bottlePts = (c, rot = 45) => { const k = bottleFoot(c, rot); return [...k,
 // ---------- kraft box (lift-off lid) ----------
 // box face artwork, content units 10 per mm, y down
 function boxArt(wmm, hmm, scent) {
-  const w = wmm * 10, h = hmm * 10, id = `b${uid++}`, aw = w * 1.05, ah = aw * 1008 / 1072, ks = w * .13;
+  const w = wmm * 10, h = hmm * 10, ks = w * .13, y = h * .46;
   return `
-    <clipPath id="${id}"><rect width="${w}" height="${h}"/></clipPath>
-    <g clip-path="url(#${id})"><image href="detail-art.png" x="${w * .32}" y="${h * .48}" width="${aw}" height="${ah}" opacity=".72" style="mix-blend-mode:multiply"/></g>
-    <text x="${w / 2 + 2}" y="${h * .34 + 2.4}" text-anchor="middle" class="didot" font-size="${ks}" letter-spacing="${w * .035}" fill="#6b4c2c" opacity=".55">KORO</text>
-    <text x="${w / 2 - 2}" y="${h * .34 - 2}" text-anchor="middle" class="didot" font-size="${ks}" letter-spacing="${w * .035}" fill="#f2dcb6" opacity=".7">KORO</text>
-    <text x="${w / 2}" y="${h * .34}" text-anchor="middle" class="didot" font-size="${ks}" letter-spacing="${w * .035}" fill="#b48d62">KORO</text>
-    <text x="${w * .07}" y="${h - w * .07}" class="sans" font-size="${w * .032}" letter-spacing="${w * .008}" fill="#3b2716" opacity=".75">${scent}</text>`;
+    <text x="${w / 2 + 2}" y="${y + 2.4}" text-anchor="middle" class="didot" font-size="${ks}" letter-spacing="${w * .035}" fill="#6b4c2c" opacity=".55">KORO</text>
+    <text x="${w / 2 - 2}" y="${y - 2}" text-anchor="middle" class="didot" font-size="${ks}" letter-spacing="${w * .035}" fill="#f2dcb6" opacity=".7">KORO</text>
+    <text x="${w / 2}" y="${y}" text-anchor="middle" class="didot" font-size="${ks}" letter-spacing="${w * .035}" fill="#b48d62">KORO</text>
+    <text x="${w / 2}" y="${h - w * .08}" text-anchor="middle" class="sans" font-size="${w * .032}" letter-spacing="${w * .012}" fill="#3b2716" opacity=".75">${scent}</text>`;
 }
 // draws a closed prism (outer box). y0..y1 heights; art on the face whose normal points most at camera
 function prism(P, c, w, d, y0, y1, rot, opts = {}) {
