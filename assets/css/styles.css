@@ -505,6 +505,16 @@ p { margin: 0 0 1em; }
 .personal { border-top: 1px solid var(--line); }
 .personal-copy .btn { margin-top: 20px; }
 
+/* ---------- Materials ---------- */
+
+.materials { padding: var(--section) 0; border-top: 1px solid var(--line); }
+.materials-grid {
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(12px, 2vw, 28px);
+  max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter);
+}
+.materials-grid img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+.materials-grid p { margin: 14px 0 0; font-family: var(--didot); font-variation-settings: var(--didot-opsz); font-size: 20px; }
+
 /* ---------- Words ---------- */
 
 .words { padding: var(--section) var(--gutter); background: var(--ink); color: var(--paper); text-align: center; }
@@ -587,6 +597,7 @@ p { margin: 0 0 1em; }
 
   .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .words ul { grid-template-columns: 1fr; gap: 40px; max-width: 560px; }
+  .materials-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .footer-cols { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 

@@ -23,4 +23,4 @@ Then open http://localhost:8000.
 
 ## Before going live
 
-The bottle photos (`koro-heather`, `koro-oranges`, `koro-olwen-box`) and the packaging renders are KORO's. Three mood photos without bottles (`pear`, `field` and the framed-art drawings aside) still come from Ffern: `pear.jpg` and `field.jpg` should be replaced with KORO's own shoot before publishing.
+No Ffern photography remains. Bottle photos (`koro-*.jpg`) are AI-generated KORO concepts, and the material photos (`mat-*.jpg`) were supplied without a source: confirm the licence for each, or replace them with KORO's own shoot, before publishing. SEPHET still has a placeholder kraft tube tile.
