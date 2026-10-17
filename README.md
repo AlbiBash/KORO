@@ -23,6 +23,4 @@ Then open http://localhost:8000.
 
 ## Before going live
 
-The bottle and tube photographs are Ffern's (their bottles carry Ffern labels). They are here as mood references only and must be replaced with KORO's own shoot before publishing.
-
-Card set and framed print prices, formats and frame finishes are placeholders; orders currently go to info@koroperfumes.com by email.
+The bottle photos (`koro-heather`, `koro-oranges`, `koro-olwen-box`) and the packaging renders are KORO's. Three mood photos without bottles (`pear`, `field` and the framed-art drawings aside) still come from Ffern: `pear.jpg` and `field.jpg` should be replaced with KORO's own shoot before publishing.
