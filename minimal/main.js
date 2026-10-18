@@ -14,13 +14,14 @@ menu.addEventListener('click', (e) => {
 const count = document.querySelector('.bag-count');
 let items = 0;
 document.querySelectorAll('.add').forEach((btn) => {
+  const label = btn.textContent;
   btn.addEventListener('click', () => {
     items += 1;
     count.textContent = items;
     btn.textContent = 'Added';
     btn.classList.add('is-added');
     setTimeout(() => {
-      btn.textContent = 'Add to bag';
+      btn.textContent = label;
       btn.classList.remove('is-added');
     }, 1600);
   });

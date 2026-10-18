@@ -28,3 +28,7 @@ No Ffern photography remains. Bottle photos (`koro-*.jpg`, `tease-*.jpg`) are AI
 ## Minimal edition (`minimal/`)
 
 A pared-back, editorial alternative in the spirit of Loewe: a serif wordmark, small uppercase sans navigation, hairline rules and photography-led grids. It is a standalone site with its own `index.html`, `styles.css`, `main.js` and `img/`. Open http://localhost:8000/minimal/ with the server above. The bag counter and newsletter form are front-end demos only. Previews: `previews/minimal-*.jpg`.
+
+## Ffern-style edition (`ffern/`)
+
+The same layouts as `minimal/`, with a warmer skin: oat paper, soft beige mats behind every photo, serif type throughout (Cormorant Garamond and EB Garamond), italic links, pill buttons and a label-style footer. `ffern/ffern.css` is layered over `minimal/styles.css`, and the page reuses `minimal/img/` and `minimal/main.js`. Open http://localhost:8000/ffern/. Previews: `previews/ffern-*.jpg`.

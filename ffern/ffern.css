@@ -1,0 +1,118 @@
+/* Ffern-style skin layered over ../minimal/styles.css:
+   warm oat paper, soft beige mats, serif throughout, label details. */
+:root {
+  --paper: #f3ece1;
+  --mat: #e9dfcf;
+  --ink: #4a3d31;
+  --muted: #94826f;
+  --rule: #cdbca4;
+  --accent: #8a5a3c;
+  --serif: "Cormorant Garamond", Georgia, serif;
+  --sans: "EB Garamond", Georgia, serif;
+}
+
+body { font-size: 17px; line-height: 1.55; }
+figure, .tile-media { background: var(--mat); }
+.eyebrow { font-family: var(--sans); font-size: 12px; letter-spacing: .2em; color: var(--accent); }
+
+.announce {
+  background: var(--mat); color: var(--ink);
+  text-align: center; font-size: 14px; font-style: italic;
+  padding: 9px var(--gutter);
+}
+
+/* Header: sentence-case serif, softer rule */
+.header { border-bottom-color: var(--rule); height: 74px; }
+.nav { font-size: 17px; letter-spacing: .01em; text-transform: none; gap: 28px; }
+.logo { font-size: 34px; letter-spacing: .22em; padding-left: .22em; font-weight: 500; }
+.menu-toggle { text-transform: none; letter-spacing: 0; font-size: 16px; }
+
+/* Links: italic serif, hairline underline */
+.tile-link, .add { font-style: italic; font-size: 16px; border-bottom-color: var(--rule); }
+.tile-link:hover, .add:hover { opacity: 1; color: var(--accent); border-bottom-color: currentColor; }
+
+/* Opening grid: images sit on beige mats */
+.opening { padding-top: 40px; height: max(640px, calc(100svh - 74px - 40px)); }
+.tile-media { padding: 10px; }
+.tile-media img { border-radius: 1px; }
+.tile-name, .caption h3, .product-info h3 { font-family: var(--serif); font-size: 24px; font-weight: 500; line-height: 1.15; }
+.caption .muted, .product-info .muted { font-size: 15px; font-style: italic; }
+
+/* Statement */
+.statement-mark { color: var(--accent); font-size: 22px; margin-bottom: 12px; }
+.statement-text { font-style: italic; color: var(--ink); }
+
+/* Pair & duo: matted frames */
+.pair figure, .duo figure, .journal figure { padding: 14px; }
+.pair-lede { font-style: italic; font-size: 26px; }
+
+/* Shop: centred head and label cards */
+.section-head {
+  flex-direction: column; align-items: center; text-align: center; gap: 6px;
+  border-bottom: 0; padding-bottom: 0; margin-bottom: 40px;
+}
+.section-title { font-size: clamp(34px, 3.6vw, 48px); font-weight: 500; }
+.section-sub { font-style: italic; color: var(--muted); }
+.product {
+  background: var(--mat); padding: 12px 12px 22px;
+  text-align: center; justify-items: center;
+}
+.product figure { width: 100%; background: transparent; }
+.product-info { margin: 18px 0 14px; }
+.price { font-family: var(--serif); font-size: 18px; }
+.add {
+  border: 1px solid var(--ink); border-radius: 999px;
+  padding: 7px 20px 8px; font-size: 15px;
+}
+.add:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.product .add { justify-self: center; }
+.caption .add { border: 0; border-bottom: 1px solid var(--rule); border-radius: 0; padding: 0 0 2px; }
+.caption .add:hover { background: none; color: var(--accent); }
+
+/* Journal */
+.journal-title { font-weight: 500; }
+.journal-title::first-line { font-style: italic; }
+.journal-copy p:not(.eyebrow) { color: var(--ink); opacity: .8; }
+
+/* Footer: newsletter on a mat, label-style sign-off */
+.footer { border-top-color: var(--rule); }
+.subscribe { max-width: none; margin: 56px 0; padding: 48px var(--gutter); background: var(--mat); text-align: center; }
+.subscribe label { font-style: italic; font-size: 30px; }
+.subscribe-row { max-width: 480px; margin: 0 auto; border-bottom-color: var(--ink); }
+.subscribe button { text-transform: none; letter-spacing: 0; font-size: 16px; font-style: italic; }
+.footer-bar { border-top-color: var(--rule); font-size: 16px; letter-spacing: 0; text-transform: none; }
+
+.footer-label {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+  border: 1px solid var(--ink); margin: 8px 0 var(--gutter);
+}
+.footer-label .footer-mark {
+  font-size: clamp(56px, 11vw, 170px); line-height: 1; padding: 24px 0 18px .12em;
+  border-right: 1px solid var(--ink);
+}
+.footer-label .cell {
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 14px 16px; font-family: var(--serif); font-size: clamp(18px, 2vw, 28px);
+  border-right: 1px solid var(--ink);
+}
+.footer-label .cell:last-child { border-right: 0; }
+.footer-label .cap { font-family: var(--sans); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); margin-bottom: auto; }
+
+@media (max-width: 1000px) {
+  .opening { height: auto; }
+  .nav { font-size: 16px; gap: 18px; }
+}
+
+@media (max-width: 640px) {
+  .header { height: 60px; }
+  .logo { font-size: 26px; }
+  .nav--left { gap: 14px; font-size: 20px; }
+  .tile-media { padding: 6px; }
+  .tile-name { font-size: 20px; }
+  .pair figure, .duo figure, .journal figure { padding: 8px; }
+  .product { padding: 8px 8px 16px; }
+  .product-info h3 { font-size: 20px; }
+  .add { padding: 6px 14px 7px; font-size: 14px; }
+  .footer-label { grid-template-columns: 1fr 1fr 1fr; }
+  .footer-label .footer-mark { grid-column: 1 / -1; border-right: 0; border-bottom: 1px solid var(--ink); text-align: center; padding-left: .12em; }
+}
