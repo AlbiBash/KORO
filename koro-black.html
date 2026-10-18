@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KORO — Natural Perfumery, London</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    /* Black ground, full-bleed photographs, type only: no rules, boxes or underlines */
+    :root { --bg: #0b0a09; --fg: #ece6dd; --soft: #8c847b; --serif: "Cormorant Garamond", Georgia, serif; --sans: "Inter", Arial, sans-serif; --g: clamp(20px, 3vw, 44px); }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--fg); font: 300 13px/1.5 var(--sans); -webkit-font-smoothing: antialiased; }
+    img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    a { color: inherit; text-decoration: none; }
+    p, h1, h2, h3 { margin: 0; font-weight: 300; }
+    .cap { font-size: 10px; letter-spacing: .22em; text-transform: uppercase; color: var(--soft); }
+    .serif { font-family: var(--serif); font-weight: 300; }
+
+    header { position: absolute; inset: 0 0 auto; z-index: 2; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 26px var(--g); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; }
+    header nav { display: flex; gap: 34px; }
+    header nav:last-child { justify-content: flex-end; }
+    .mark { font-family: var(--serif); font-size: 28px; letter-spacing: .3em; text-transform: none; margin-right: -.3em; }
+
+    .hero { position: relative; height: 100vh; min-height: 640px; }
+    .hero img { object-position: 50% 45%; filter: brightness(.82); }
+    .hero-text { position: absolute; left: var(--g); bottom: var(--g); }
+    .hero-text h1 { font-family: var(--serif); font-size: clamp(56px, 8vw, 128px); line-height: .9; margin-top: 12px; }
+    .hero-text a { display: inline-block; margin-top: 18px; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; }
+
+    .statement { max-width: 900px; margin: 0 auto; padding: clamp(120px, 14vw, 220px) var(--g); text-align: center; }
+    .statement p.serif { margin-top: 28px; font-size: clamp(28px, 3vw, 44px); line-height: 1.22; text-wrap: balance; }
+
+    .split { display: grid; grid-template-columns: 1fr 1fr; }
+    .split a { position: relative; aspect-ratio: 4 / 5; }
+    .label { position: absolute; left: var(--g); bottom: var(--g); }
+    .label h3 { font-family: var(--serif); font-size: 34px; line-height: 1; }
+    .label p { margin-top: 6px; color: rgba(236,230,221,.75); }
+
+    .range { padding: clamp(120px, 14vw, 220px) 0 0; }
+    .range-head { display: flex; justify-content: space-between; align-items: baseline; padding: 0 var(--g) 28px; }
+    .range-head h2 { font-family: var(--serif); font-size: clamp(32px, 3.4vw, 48px); }
+    .row { display: grid; grid-template-columns: repeat(4, 1fr); }
+    .row figure { margin: 0; aspect-ratio: 3 / 4; }
+    .row .meta { display: grid; grid-template-columns: repeat(4, 1fr); }
+    .meta div { padding: 18px var(--g) 0; }
+    .meta h3 { font-size: 14px; }
+    .meta p { color: var(--soft); }
+
+    .wide { position: relative; height: 82vh; min-height: 560px; margin-top: clamp(120px, 14vw, 220px); }
+    .wide img { filter: brightness(.7); }
+    .wide .copy { position: absolute; right: var(--g); bottom: var(--g); max-width: 420px; }
+    .wide h2 { font-family: var(--serif); font-size: clamp(36px, 4vw, 60px); line-height: 1.05; margin: 12px 0 14px; }
+    .wide p:not(.cap) { color: rgba(236,230,221,.8); }
+
+    footer { padding: clamp(100px, 12vw, 180px) var(--g) 0; overflow: hidden; }
+    .foot { display: flex; justify-content: space-between; font-size: 10px; letter-spacing: .22em; text-transform: uppercase; color: var(--soft); }
+    .foot nav { display: flex; gap: 30px; }
+    .big { font-family: var(--serif); font-weight: 300; font-size: 27vw; letter-spacing: .12em; line-height: .76; text-align: center; margin: 6vw -.12em 0 0; padding-bottom: 2vw; }
+
+    .show-s { display: none; }
+    @media (max-width: 700px) {
+      .show-s { display: inline; }
+      header { grid-template-columns: auto 1fr auto; }
+      header .hide { display: none; }
+      .mark { font-size: 22px; }
+      .hero { height: 88vh; min-height: 0; }
+      .split, .row, .row .meta { grid-template-columns: 1fr 1fr; }
+      .label h3 { font-size: 24px; }
+      .label p { font-size: 11px; }
+      .meta div { padding-bottom: 28px; }
+      .range-head { flex-direction: column; gap: 6px; }
+      .wide { height: 90vh; }
+      .foot { flex-direction: column; gap: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav><a class="hide" href="#">Shop</a><a class="hide" href="#">Fragrances</a><a class="hide" href="#">Journal</a><a class="show-s" href="#">Menu</a></nav>
+    <a class="mark" href="#">KORO</a>
+    <nav><a class="hide" href="#">Search</a><a href="#">Bag 0</a></nav>
+  </header>
+
+  <section class="hero">
+    <img src="assets/img/tease-bark.jpg" alt="A square KORO bottle set into dark tree bark between pine needles">
+    <div class="hero-text">
+      <p class="cap">Coniferous forest</p>
+      <h1>Boreala</h1>
+      <a href="https://koroperfumes.com/product/boreala/">Discover</a>
+    </div>
+  </section>
+
+  <section class="statement">
+    <p class="cap">Natural perfumery, London</p>
+    <p class="serif">Limited batches of natural fragrances, made from essential oils, absolutes and our own tinctures. Over 400 raw materials in the palette, and the number is growing.</p>
+  </section>
+
+  <section class="split">
+    <a href="https://koroperfumes.com/product/bahaat/">
+      <img src="assets/img/tease-chocolate.jpg" alt="A KORO bottle of dark BAHAAT set into broken dark chocolate">
+      <span class="label"><h3>Bahaat</h3><p>Coffee, dark chocolate, patchouli</p></span>
+    </a>
+    <a href="https://koroperfumes.com/product/laudan/">
+      <img src="assets/img/koro-laudan.jpg" alt="A square KORO bottle of amber LAUDAN">
+      <span class="label"><h3>Laudan</h3><p>Resin, amber, leather, aged wood</p></span>
+    </a>
+  </section>
+
+  <section class="range">
+    <div class="range-head"><h2>The Boutique Collection</h2><p class="cap">Natural eau de parfum · from £49</p></div>
+    <div class="row">
+      <figure><img src="assets/img/koro-sadhana.jpg" alt="SADHANA"></figure>
+      <figure><img src="assets/img/koro-cephir.jpg" alt="CEPHIR"></figure>
+      <figure><img src="assets/img/koro-olwen.jpg" alt="OLWEN"></figure>
+      <figure><img src="assets/img/koro-saraha.jpg" alt="SARAHA"></figure>
+    </div>
+    <div class="row meta">
+      <div><h3>Sadhana</h3><p>A woody chypre, pure, light, clean</p></div>
+      <div><h3>Cephir</h3><p>Sparkling pear-apple, sweet and sour</p></div>
+      <div><h3>Olwen</h3><p>Early spring air, acacia, hyacinth</p></div>
+      <div><h3>Saraha</h3><p>Dark incense, white oud, vetiver</p></div>
+    </div>
+  </section>
+
+  <section class="wide">
+    <img src="assets/img/mat-cacao-beans.jpg" alt="Two hands holding roasted cacao beans">
+    <div class="copy">
+      <p class="cap">Journal · No. 12</p>
+      <h2>Over four hundred materials</h2>
+      <p>Essential oils, absolutes, natural isolates and CO2 extracts, from well-known suppliers and small artisans around the world, with a wide range of our own tinctures.</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="foot">
+      <nav><a href="#">About</a><a href="#">Personal fragrance</a><a href="#">Contact</a></nav>
+      <nav><a href="#">Delivery</a><a href="#">Instagram</a></nav>
+    </div>
+    <p class="big" aria-hidden="true">KORO</p>
+  </footer>
+</body>
+</html>
