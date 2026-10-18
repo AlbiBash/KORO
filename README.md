@@ -24,3 +24,7 @@ Then open http://localhost:8000.
 ## Before going live
 
 No Ffern photography remains. Bottle photos (`koro-*.jpg`, `tease-*.jpg`) are AI-generated KORO concepts, and the material photos (`mat-*.jpg`) were supplied without a source: confirm the licence for each, or replace them with KORO's own shoot, before publishing.
+
+## Minimal edition (`minimal/`)
+
+A pared-back, editorial alternative in the spirit of Loewe: a serif wordmark, small uppercase sans navigation, hairline rules and photography-led grids. It is a standalone site with its own `index.html`, `styles.css`, `main.js` and `img/`. Open http://localhost:8000/minimal/ with the server above. The bag counter and newsletter form are front-end demos only. Previews: `previews/minimal-*.jpg`.

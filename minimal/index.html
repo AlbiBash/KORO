@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KORO — Natural Perfumery</title>
+  <meta name="description" content="KORO is a natural perfumery studio in London. Small batches, made from natural materials.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="header">
+    <button class="menu-toggle" aria-expanded="false" aria-controls="nav-primary">Menu</button>
+    <nav class="nav nav--left" id="nav-primary" aria-label="Primary">
+      <a href="#shop">Shop</a>
+      <a href="#fragrances">Fragrances</a>
+      <a href="#journal">Journal</a>
+    </nav>
+    <a class="logo" href="#top" aria-label="KORO, home">KORO</a>
+    <nav class="nav nav--right" aria-label="Account">
+      <a class="hide-sm" href="#search">Search</a>
+      <a class="hide-sm" href="#account">Account</a>
+      <a href="#bag">Bag <span class="bag-count" aria-live="polite">0</span></a>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <!-- Opening grid -->
+    <section class="opening" id="top" aria-label="Featured fragrances">
+      <article class="tile tile--a">
+        <a class="tile-media" href="#amber-bark"><img src="img/amber-bark.jpg" alt="A KORO bottle set into a hollow of dark, wet birch bark, flanked by pine needles" width="928" height="1152"></a>
+        <h2 class="tile-name">Amber Bark</h2>
+        <a class="tile-link" href="#amber-bark">Discover</a>
+      </article>
+
+      <div class="tile-stack">
+        <article class="tile tile--b">
+          <a class="tile-media" href="#cacao-noir"><img src="img/cacao-noir.jpg" alt="A dark KORO bottle laid among broken shards of dark chocolate and cocoa dust" width="1289" height="1600"></a>
+          <h2 class="tile-name">Cacao Noir</h2>
+          <a class="tile-link" href="#cacao-noir">Discover</a>
+        </article>
+        <article class="tile tile--c">
+          <a class="tile-media" href="#cacao-noir"><img src="img/cacao-pod.jpg" alt="A single dried cacao pod on a pale grey ground" width="900" height="1125"></a>
+          <h2 class="tile-name">Raw Cacao</h2>
+          <a class="tile-link" href="#cacao-noir">Discover</a>
+        </article>
+      </div>
+
+      <article class="tile tile--d">
+        <a class="tile-media" href="#soft-skin"><img src="img/soft-skin.jpg" alt="A square KORO bottle of amber perfume on a warm peach background" width="928" height="1152"></a>
+        <h2 class="tile-name">Soft Skin</h2>
+        <a class="tile-link" href="#soft-skin">Discover</a>
+      </article>
+
+      <article class="tile tile--e">
+        <a class="tile-media" href="#amber-bark"><img src="img/pine.jpg" alt="Close-up of long pine needles in soft forest light" width="900" height="1125"></a>
+        <h2 class="tile-name">Pine Resin</h2>
+        <a class="tile-link" href="#amber-bark">Discover</a>
+      </article>
+    </section>
+
+    <!-- Statement -->
+    <section class="statement">
+      <p class="eyebrow">Natural perfumery, London</p>
+      <p class="statement-text">Made by hand in small batches from flowers, fruit, resin and bark. Nothing more than the material itself, and the time it takes.</p>
+    </section>
+
+    <!-- Seasonal pair -->
+    <section class="pair" id="fragrances" aria-label="Spring fragrances">
+      <article class="pair-main" id="mimosa">
+        <figure><img src="img/mimosa.jpg" alt="A KORO bottle of golden perfume resting in a bed of yellow mimosa blossom" width="928" height="1152" loading="lazy"></figure>
+        <div class="caption">
+          <div>
+            <h3>Mimosa Sun</h3>
+            <p class="muted">Mimosa absolute, orris, honeyed hay</p>
+          </div>
+          <a class="tile-link" href="#shop">Discover</a>
+        </div>
+      </article>
+      <article class="pair-side" id="pear">
+        <div class="pair-copy">
+          <p class="eyebrow">New season</p>
+          <p class="pair-lede">Two bright openings for the turn of the year: pollen-soft mimosa, and green pear with eucalyptus and clove.</p>
+        </div>
+        <figure><img src="img/pear.jpg" alt="A KORO bottle of pale green perfume among ripe pears, eucalyptus leaves and dried cloves" width="928" height="1152" loading="lazy"></figure>
+        <div class="caption">
+          <div>
+            <h3>Green Pear</h3>
+            <p class="muted">Pear, eucalyptus, clove bud</p>
+          </div>
+          <a class="tile-link" href="#shop">Discover</a>
+        </div>
+      </article>
+    </section>
+
+    <!-- Shop -->
+    <section class="shop" id="shop" aria-labelledby="shop-title">
+      <div class="section-head">
+        <h2 id="shop-title" class="section-title">The Skin Collection</h2>
+        <p class="muted">Eau de parfum, 50 ml</p>
+      </div>
+      <ul class="products">
+        <li class="product">
+          <figure><img src="img/clear.jpg" alt="A clear KORO bottle on peach" width="928" height="1152" loading="lazy"></figure>
+          <div class="product-info">
+            <h3>Bare</h3>
+            <p class="muted">Aldehydes, white musk, rice</p>
+            <p class="price">£145</p>
+          </div>
+          <button class="add" type="button" data-name="Bare">Add to bag</button>
+        </li>
+        <li class="product">
+          <figure><img src="img/linden.jpg" alt="A KORO bottle of pale yellow perfume on peach" width="928" height="1152" loading="lazy"></figure>
+          <div class="product-info">
+            <h3>Linden</h3>
+            <p class="muted">Linden blossom, pear skin, hay</p>
+            <p class="price">£145</p>
+          </div>
+          <button class="add" type="button" data-name="Linden">Add to bag</button>
+        </li>
+        <li class="product">
+          <figure><img src="img/olive.jpg" alt="A KORO bottle of olive green perfume on peach" width="928" height="1152" loading="lazy"></figure>
+          <div class="product-info">
+            <h3>Fig Leaf</h3>
+            <p class="muted">Fig leaf, galbanum, vetiver</p>
+            <p class="price">£145</p>
+          </div>
+          <button class="add" type="button" data-name="Fig Leaf">Add to bag</button>
+        </li>
+        <li class="product" id="soft-skin">
+          <figure><img src="img/amber.jpg" alt="A KORO bottle of deep amber perfume on peach" width="928" height="1152" loading="lazy"></figure>
+          <div class="product-info">
+            <h3>Soft Skin</h3>
+            <p class="muted">Labdanum, benzoin, ambrette</p>
+            <p class="price">£145</p>
+          </div>
+          <button class="add" type="button" data-name="Soft Skin">Add to bag</button>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Dark pair -->
+    <section class="duo" aria-label="Woods and cacao">
+      <article id="amber-bark">
+        <figure><img src="img/amber-bark.jpg" alt="A KORO bottle set into dark birch bark with pine needles" width="928" height="1152" loading="lazy"></figure>
+        <div class="caption">
+          <div>
+            <h3>Amber Bark</h3>
+            <p class="muted">Birch tar, pine resin, amber · £165</p>
+          </div>
+          <button class="add" type="button" data-name="Amber Bark">Add to bag</button>
+        </div>
+      </article>
+      <article id="cacao-noir">
+        <figure><img src="img/cacao-noir.jpg" alt="A dark KORO bottle among shards of chocolate" width="1289" height="1600" loading="lazy"></figure>
+        <div class="caption">
+          <div>
+            <h3>Cacao Noir</h3>
+            <p class="muted">Cacao absolute, tonka, patchouli · £165</p>
+          </div>
+          <button class="add" type="button" data-name="Cacao Noir">Add to bag</button>
+        </div>
+      </article>
+    </section>
+
+    <!-- Journal -->
+    <section class="journal" id="journal" aria-labelledby="journal-title">
+      <figure><img src="img/pear-table.jpg" alt="A KORO bottle on a marble table in late sun beside two pears, cinnamon sticks, red berries and a flute of champagne" width="928" height="1152" loading="lazy"></figure>
+      <div class="journal-copy">
+        <p class="eyebrow">Journal · No. 12</p>
+        <h2 id="journal-title" class="journal-title">An afternoon in late light</h2>
+        <p>Ripe pear, a stick of cinnamon, pink pepper and something cold in a glass. Our perfumer on composing a fragrance for the slow hours of a winter table, and why the best accords begin in the kitchen.</p>
+        <a class="tile-link" href="#journal">Read</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <form class="subscribe" id="subscribe">
+      <label for="email">Letters from the studio</label>
+      <div class="subscribe-row">
+        <input id="email" type="email" name="email" placeholder="Email address" autocomplete="email" required>
+        <button type="submit">Subscribe</button>
+      </div>
+      <p class="subscribe-note muted" aria-live="polite"></p>
+    </form>
+    <div class="footer-bar">
+      <nav aria-label="Studio">
+        <a href="#about">About</a>
+        <a href="#stores">Stores</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <nav aria-label="Social and help">
+        <a href="#instagram">Instagram</a>
+        <a href="#delivery">Delivery</a>
+        <a href="#subscribe">Subscribe</a>
+      </nav>
+    </div>
+    <p class="footer-mark" aria-hidden="true">KORO</p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
