@@ -44,6 +44,7 @@ a:hover .u, .u:hover { color: var(--soft); }
 .tile--e { grid-column: 4; }
 .tile--c img { object-position: 50% 45%; }
 .tile--d img { object-position: 50% 40%; }
+.tile--e img { object-position: 38% 50%; }
 
 /* Statement */
 .statement { max-width: 860px; margin: 0 auto; padding: clamp(96px, 12vw, 180px) var(--gutter); text-align: center; }
