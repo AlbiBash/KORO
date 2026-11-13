@@ -6,7 +6,10 @@ The homepage leads with the **Autumn 26 edition, KORO × Nadya Danylenko**, a co
 
 ## Structure
 
-- `index.html` – single-page site: seasonal hero, perfumer statement, edition and art cards, art shop (card set + framed print configurator), MABON feature, collection, discovery sets, studio, personal fragrance, reviews
+- `index.html` – homepage built from the Figma layout (landscape hero with line-drawing mark, three bottle cards); styles in `assets/css/home.css`
+- `full-site.html` – the earlier long-form site (edition, art shop, collection, studio), kept for reference
+
+- `full-site.html` – single-page site: seasonal hero, perfumer statement, edition and art cards, art shop (card set + framed print configurator), MABON feature, collection, discovery sets, studio, personal fragrance, reviews
 - `assets/css/styles.css` – design tokens and layout (GFS Didot for the logo and display type, Jost for text)
 - `assets/js/main.js` – mobile menu, volume selector, scroll fade-in (respects reduced motion)
 - `assets/img/` – photography and Nadya Danylenko artwork
