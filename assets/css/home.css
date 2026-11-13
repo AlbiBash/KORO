@@ -6,7 +6,7 @@ img { display: block; max-width: 100%; }
 .hero { position: relative; height: clamp(320px, 37vw, 520px); overflow: hidden; color: #fff; }
 .hero-img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 12%; }
 .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.5), rgba(0,0,0,0) 50%); }
-.mark { position: absolute; z-index: 2; top: 20px; left: 50%; transform: translateX(-50%); width: clamp(44px, 5vw, 64px); }
+.mark { position: absolute; z-index: 2; top: 16px; left: 50%; transform: translateX(-50%); width: clamp(72px, 9vw, 120px); }
 .mark img { height: auto; mix-blend-mode: multiply; }
 .hero h1 { position: absolute; z-index: 2; left: var(--pad); bottom: clamp(24px, 4vw, 52px); margin: 0; max-width: 16em; font-weight: 300; font-size: clamp(28px, 3.9vw, 52px); line-height: 1.25; }
 .hero h1 strong { display: block; font-weight: 600; }
