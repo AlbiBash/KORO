@@ -1,26 +1,59 @@
-:root { --ink: #111; --pad: clamp(16px, 3.8vw, 49px); }
-*, *::before, *::after { box-sizing: border-box; }
-body { margin: 0; background: #fff; color: var(--ink); font-family: "Newsreader", Georgia, serif; font-size: 18px; line-height: 1.4; }
-img { display: block; max-width: 100%; }
-
+/* KORO homepage — layout from Figma, structure inspired by commune.cc. Loaded after site.css */
 .hero { position: relative; height: clamp(320px, 37vw, 520px); overflow: hidden; color: #fff; }
 .hero-img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 12%; }
 .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.5), rgba(0,0,0,0) 50%); }
-.mark { position: absolute; z-index: 2; top: 20px; left: 50%; transform: translateX(-50%); width: clamp(44px, 5vw, 64px); }
+.mark { position: absolute; z-index: 2; top: 16px; left: 50%; transform: translateX(-50%); width: clamp(72px, 9vw, 120px); }
 .mark img { height: auto; mix-blend-mode: multiply; }
 .hero h1 { position: absolute; z-index: 2; left: var(--pad); bottom: clamp(24px, 4vw, 52px); margin: 0; max-width: 16em; font-weight: 300; font-size: clamp(28px, 3.9vw, 52px); line-height: 1.25; }
 .hero h1 strong { display: block; font-weight: 600; }
-
-.cards { list-style: none; margin: 0; padding: 36px var(--pad) 80px; display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px, 2.2vw, 28px); align-items: start; }
-.cards a { color: inherit; text-decoration: none; display: block; }
-.cards img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; }
-.cards h2 { margin: 14px 0 0; font-size: 18px; font-weight: 600; }
-.cards p { margin: 0; font-weight: 500; max-width: 17em; }
-.cards a:hover h2 { text-decoration: underline; }
-.cards a:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
-
-@media (max-width: 760px) { .cards { grid-template-columns: 1fr; } }
-
-.top-nav { position: absolute; z-index: 3; top: 22px; left: var(--pad); display: flex; gap: 24px; font-family: "Geist", sans-serif; font-size: 14px; }
+.top-nav { position: absolute; z-index: 3; top: 22px; left: var(--pad); display: flex; gap: 24px; font-size: 14px; }
 .top-nav a { color: var(--ink); text-decoration: none; } .top-nav a:hover { text-decoration: underline; }
-@media (max-width: 520px) { .top-nav { gap: 14px; font-size: 13px; } }
+
+.intro { text-align: center; padding: clamp(56px, 8vw, 112px) var(--pad) clamp(40px, 5vw, 64px); max-width: 52em; margin: 0 auto; }
+.intro h2 { font-size: clamp(30px, 4.4vw, 52px); margin: 0 0 20px; }
+.intro p:not(.eyebrow) { color: var(--soft); max-width: 36em; margin: 0 auto 28px; }
+.btn--inline { display: inline-block; padding: 14px 32px; }
+
+.cards { list-style: none; margin: 0; padding: 0 var(--pad) clamp(56px, 8vw, 112px); max-width: 1360px; margin-inline: auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px, 2.2vw, 28px); align-items: start; }
+.cards a { text-decoration: none; display: block; }
+.cards img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; }
+.cards h2 { margin: 14px 0 4px; font-size: 24px; }
+.cards p { margin: 0; font-family: var(--serif); font-weight: 400; font-size: 18px; color: var(--soft); max-width: 18em; }
+.cards a:hover h2 { text-decoration: underline; text-underline-offset: 4px; }
+
+.shelf { background: var(--warm); padding: clamp(56px, 7vw, 96px) 0 0; }
+.shelf-head { text-align: center; padding: 0 var(--pad); }
+.shelf-head h2 { font-size: clamp(32px, 4vw, 48px); margin: 0 0 8px; }
+.shelf-head p { margin: 0 0 24px; color: var(--soft); }
+.shelf .grid { padding-bottom: clamp(56px, 7vw, 96px); }
+
+.perfumer { padding: clamp(72px, 10vw, 140px) var(--pad); text-align: center; }
+.perfumer blockquote { margin: 0 auto; max-width: 26em; }
+.perfumer p { font-family: var(--serif); font-size: clamp(26px, 3.6vw, 42px); line-height: 1.25; margin: 0 0 20px; }
+.perfumer footer { font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--soft); }
+
+.discover { max-width: 1360px; margin: 0 auto; padding: 0 var(--pad) clamp(56px, 8vw, 112px); display: grid; grid-template-columns: 1fr 1.4fr; gap: clamp(24px, 5vw, 80px); align-items: center; }
+.discover h2 { font-size: clamp(30px, 4vw, 48px); margin: 0 0 12px; }
+.discover-copy p:last-child { color: var(--soft); max-width: 24em; }
+.sets { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.sets a { display: block; border: 1px solid var(--line); padding: 28px 24px; text-decoration: none; height: 100%; transition: border-color .2s; }
+.sets a:hover { border-color: var(--ink); }
+.sets h3 { margin: 0 0 6px; font-size: 24px; }
+.sets p { margin: 0 0 18px; color: var(--soft); font-size: 14px; }
+.sets span { font-size: 18px; }
+
+.words { background: var(--ink); color: #f1ede4; padding: clamp(56px, 8vw, 100px) var(--pad); }
+.words .eyebrow { color: rgba(241,237,228,.6); text-align: center; margin-bottom: 36px; }
+.words ul { list-style: none; margin: 0 auto; padding: 0; max-width: 1200px; display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(24px, 4vw, 56px); }
+.words p { font-family: var(--serif); font-size: 22px; line-height: 1.35; margin: 0 0 14px; }
+.words span { font-size: 13px; color: rgba(241,237,228,.6); }
+
+@media (max-width: 860px) {
+  .cards, .words ul { grid-template-columns: 1fr; }
+  .discover { grid-template-columns: 1fr; }
+  .sets { grid-template-columns: 1fr; }
+}
+@media (max-width: 520px) { .top-nav { gap: 14px; font-size: 13px; } .top-nav a:last-child { display: none; } }
+
+.focus { padding-top: clamp(56px, 8vw, 112px); }
+.focus .eyebrow { text-align: center; margin-bottom: 28px; }
