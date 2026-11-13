@@ -636,3 +636,17 @@ p { margin: 0 0 1em; }
   .frame.is-wide { width: 78%; }
   .fan { width: 42%; }
 }
+
+/* Scent stories + landscape band */
+.stories { padding: var(--section) var(--gutter); max-width: var(--max); margin-inline: auto; }
+.stories-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(12px, 2vw, 28px); }
+.stories-grid a { display: block; text-decoration: none; }
+.stories-grid img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; transition: transform 1.2s var(--ease); }
+.stories-grid li { overflow: hidden; }
+.stories-grid a:hover img { transform: scale(1.03); }
+.stories-grid p { margin: 14px 0 0; font-size: 14px; color: var(--ink-soft); }
+.stories-grid .cap { display: block; font-family: var(--didot); font-size: 22px; letter-spacing: 0.06em; color: var(--ink); }
+.land { position: relative; margin: 0; }
+.land img { width: 100%; height: min(80vh, 720px); object-fit: cover; display: block; }
+.land-text { position: absolute; left: var(--gutter); bottom: clamp(24px, 5vw, 64px); max-width: 16em; margin: 0; color: var(--label); font-family: var(--didot); font-size: clamp(24px, 3.4vw, 44px); line-height: 1.2; text-shadow: 0 1px 18px rgba(0,0,0,.45); }
+@media (max-width: 900px) { .stories-grid { grid-template-columns: 1fr; } }
