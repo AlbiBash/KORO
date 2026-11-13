@@ -1,20 +1,15 @@
 # KORO
 
-Redesign concept for [koroperfumes.com](https://koroperfumes.com), a natural perfumery studio in London, in the quiet, label-led style of Ffern.
+Website for [KORO](https://koroperfumes.com), natural perfumes hand crafted in South England. Static HTML, layout from the KORO Figma file with a clean, commune.cc-inspired shop style.
 
-The homepage leads with the **Autumn 26 edition, KORO × Nadya Danylenko**, a collaboration with the Ukrainian artist, psychologist and movement therapist.
+## Pages
 
-## Structure
+- `index.html` – home: hero, all ten perfumes (filter by scent family), featured perfumes, perfumer quote, discovery sets, reviews
+- `bahaat.html`, `cephir.html`, `olwen.html` – perfume pages (descriptions and notes from koroperfumes.com); the other perfumes link to koroperfumes.com
+- `assets/css/site.css`, `assets/css/home.css` – styles
+- `assets/img/` – photography and logo
 
-- `index.html` – homepage built from the Figma layout (landscape hero with line-drawing mark, three bottle cards); styles in `assets/css/home.css`
-- `full-site.html` – the earlier long-form site (edition, art shop, collection, studio), kept for reference
-
-- `full-site.html` – single-page site: seasonal hero, perfumer statement, edition and art cards, art shop (card set + framed print configurator), MABON feature, collection, discovery sets, studio, personal fragrance, reviews
-- `assets/css/styles.css` – design tokens and layout (GFS Didot for the logo and display type, Jost for text)
-- `assets/js/main.js` – mobile menu, volume selector, scroll fade-in (respects reduced motion)
-- `assets/img/` – photography and Nadya Danylenko artwork
-
-Shop links point to the live WooCommerce product pages.
+The buy buttons link to the live shop at koroperfumes.com.
 
 ## Run locally
 
@@ -26,4 +21,4 @@ Then open http://localhost:8000.
 
 ## Before going live
 
-No Ffern photography remains. Bottle photos (`koro-*.jpg`, `tease-*.jpg`) are AI-generated KORO concepts, and the material photos (`mat-*.jpg`) were supplied without a source: confirm the licence for each, or replace them with KORO's own shoot, before publishing.
+The photos `note-*.webp` are AI-generated, and the bottle and material photos were supplied without a source: confirm licences, or replace them with KORO's own shoot, before publishing.
