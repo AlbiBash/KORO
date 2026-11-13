@@ -20,3 +20,7 @@ img { display: block; max-width: 100%; }
 .cards a:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
 
 @media (max-width: 760px) { .cards { grid-template-columns: 1fr; } }
+
+.top-nav { position: absolute; z-index: 3; top: 22px; left: var(--pad); display: flex; gap: 24px; font-family: "Geist", sans-serif; font-size: 14px; }
+.top-nav a { color: var(--ink); text-decoration: none; } .top-nav a:hover { text-decoration: underline; }
+@media (max-width: 520px) { .top-nav { gap: 14px; font-size: 13px; } }
